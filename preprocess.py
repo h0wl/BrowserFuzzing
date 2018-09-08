@@ -17,21 +17,37 @@ import re
 
 
 # 输入仓库路径，返回所有文件的绝对路径（二维list），list[0]是文件名，list[1]是文件路径
-def get_hcj_list(repo_path):
-    path_list = []
+def get_html_css_js_files(repo_path):
+    html_files = []
+    css_files = []
+    js_files = []
 
-    pat = '(\.html|\.css|\.js)$'  # 提取html,css,js的正则
+    html_pattern = '\.html$'
+    css_pattern = '\.css$'
+    js_pattern = '\.js$'
 
     if os.path.isdir(repo_path):  # 判断repo_path是否是一个文件夹
         for root, dirs, files in os.walk(repo_path):
             for file in files:
-                r = re.compile(pat).findall(file)
+                r = re.compile(html_pattern).findall(file)
                 if len(r) != 0:
                     abs_file_path = os.path.join(root, file)
-                    path_list.append([file, abs_file_path])
+                    html_files.append([file, abs_file_path])
+
+            for file in files:
+                r = re.compile(css_pattern).findall(file)
+                if len(r) != 0:
+                    abs_file_path = os.path.join(root, file)
+                    css_files.append([file, abs_file_path])
+
+            for file in files:
+                r = re.compile(js_pattern).findall(file)
+                if len(r) != 0:
+                    abs_file_path = os.path.join(root, file)
+                    js_files.append([file, abs_file_path])
     else:
         print('[!] dir path error. ')
-    return path_list
+    return html_files, css_files, js_files
 
 
 # 输入文件路径的二维list，将它们移至目标文件夹target_dir
@@ -73,8 +89,8 @@ def xhelp():
 
 
 if __name__ == '__main__':
-    repo_path = './datasets/pure-master'
-    output_dir = './result'  # 输出目录
+    repo_path = '../BrowserFuzzingData/repositories'
+    output_dir = '../BrowserFuzzingData/result'  # 输出目录
 
     try:
         for argv in sys.argv:
@@ -90,10 +106,26 @@ if __name__ == '__main__':
     except Exception:
         xhelp()
 
-    if os.path.exists(output_dir) == False:  # 若文件不存在则新建文件夹
+    if not os.path.exists(output_dir):  # 若文件不存在则新建文件夹
+        os.makedirs(output_dir)
+    else:
+        shutil.rmtree(output_dir)
         os.makedirs(output_dir)
 
-    file_list = get_hcj_list(repo_path)  # 得到目标文件夹的htmljscss文件路径
-    shift_file(file_list, output_dir)  # 复制文件到新目录下
-    new_file_list = get_hcj_list(output_dir)  # 获取新目录下的文件路径
-    replace_quote(new_file_list)  # 变量替换新文件
+    if not os.path.exists(output_dir + "/html"):  # 若文件不存在则新建文件夹
+        os.makedirs(output_dir + "/html")
+
+    if not os.path.exists(output_dir + "/css"):  # 若文件不存在则新建文件夹
+        os.makedirs(output_dir + "/css")
+
+    if not os.path.exists(output_dir + "/js"):  # 若文件不存在则新建文件夹
+        os.makedirs(output_dir + "/js")
+
+    html_files, css_files, js_files = get_html_css_js_files(repo_path)  # 得到目标文件夹的htmljscss文件路径
+    shift_file(html_files, output_dir + "/html")  # 复制文件到新目录下
+    shift_file(css_files, output_dir + "/css")  # 复制文件到新目录下
+    shift_file(js_files, output_dir + "/js")  # 复制文件到新目录下
+    html_files, css_files, js_files = get_html_css_js_files(output_dir)  # 获取新目录下的文件路径
+    replace_quote(html_files)  # 变量替换新文件
+    replace_quote(css_files)  # 变量替换新文件
+    replace_quote(js_files)  # 变量替换新文件
