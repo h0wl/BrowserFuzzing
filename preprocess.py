@@ -17,6 +17,9 @@ import re
 
 
 # 输入仓库路径，返回所有文件的绝对路径（二维list），list[0]是文件名，list[1]是文件路径
+import time
+
+
 def get_html_css_js_files(repo_path):
     html_files = []
     css_files = []
@@ -89,6 +92,7 @@ def xhelp():
 
 
 if __name__ == '__main__':
+    start = time.clock()
     repo_path = '../BrowserFuzzingData/repositories'
     output_dir = '../BrowserFuzzingData/result'  # 输出目录
 
@@ -129,3 +133,6 @@ if __name__ == '__main__':
     replace_quote(html_files)  # 变量替换新文件
     replace_quote(css_files)  # 变量替换新文件
     replace_quote(js_files)  # 变量替换新文件
+
+    end = time.clock()
+    print (end - start)

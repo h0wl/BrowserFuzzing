@@ -2,221 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94d3f468-f9ff-4511-8f7a-e94c61e5f593" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/statisticTool.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter1/HelloDynamic.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter1/controllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter1/hello-world-js.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter1/order-form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/1.dataBinding.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/2.dataBinding - proper form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/aMail/controllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/aMail/detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/aMail/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/aMail/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/albumList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/controllerNesting.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/controllerNestingModifyParent.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/deathRayMenu.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/errorsAndWarnings.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/focusDirective.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/formValidation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/itemsServiceModule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/orderDiscountWatch-corrected.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/orderDiscountWatch-corrected2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/orderDiscountWatch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/selectedRow.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/setScopeFromExpression.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/showDisabledMenu.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/sortingUsingWatch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/startup-watch.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/startup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/startup2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/startup3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/studentsList.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/talkingToServers/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/talkingToServers/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/talkingToServers/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter2/titleCaseFilter.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/controllers/controllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/controllers/rootController.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/directives/directives.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/directives/ngbkFocus.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/filters/filters.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/services/services.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/services/userService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/vendor/angular-mocks.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/vendor/angular.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/vendor/domReady.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/vendor/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/scripts/vendor/require.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/styles/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/styles/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/app/views/root.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/config/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/config/karma.e2e.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/test/e2e/simpleE2ESpec.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/test/spec/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/test/spec/services/userServiceSpec.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/test/vendor/angular-mocks.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/requirejs-app/test/vendor/angular-scenario.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/Gruntfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/.buildignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/scripts/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/scripts/controllers/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/scripts/vendor/angular.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/scripts/vendor/angular.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/scripts/vendor/es5-shim.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/scripts/vendor/json3.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/styles/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/styles/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/app/views/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/test/spec/controllers/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/test/vendor/angular-mocks.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/testacular.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter3/sample-app/web-server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/img/glyphicons-halflings-white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/img/glyphicons-halflings.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/controllers/controllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/directives/directives.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/services/services.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/vendor/angular-resource.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/vendor/angular.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/vendor/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/vendor/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/scripts/vendor/showdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/styles/bootstrap-responsive.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/styles/bootstrap-responsive.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/styles/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/styles/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/styles/guthub.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/views/list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/views/recipeForm.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/app/views/viewRecipe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/karma.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/karma.e2e.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/test/e2e/recipesListSpec.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/test/spec/controllersSpec.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/test/vendor/angular-mocks.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/test/vendor/angular-scenario.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter4/guthub/web-server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/accordion.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/accordion.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/directiveAsComment.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/expander-native.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/expander-native.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/expander-string.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/expander.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/expander.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/helloTemplate.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/hiThere.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/hiThereTransclude.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/hiThereUrl.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/hiThereUrlCache.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter6/hiThereUrlScript.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/datepicker/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/datepicker/datepicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/datepicker/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/file-upload/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/file-upload/directives.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/file-upload/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/angular-mocks.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/angular.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/pagination.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/paginationSpec.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/pagination/testacular.conf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/server-communication/alertBar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/server-communication/services.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/socketio/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/socketio/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/socketio/server.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/teams-list/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/teams-list/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/teams-list/services.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/.bowerrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/.csslintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/CONTRIBUTING.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/CREDITS.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/Gruntfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/HISTORY.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/bower.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/composer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/base/css/base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/buttons/css/buttons-core.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/buttons/css/buttons.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/buttons/tests/manual/button.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/forms/css/forms-r.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/forms/css/forms.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/forms/tests/manual/forms.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/grids/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/grids/css/grids-core.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/grids/tests/manual/responsive.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/menus/css/menus-core.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/menus/css/menus-dropdown.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/menus/css/menus-horizontal.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/menus/css/menus-scrollable.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/menus/css/menus-skin.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/menus/tests/manual/menus.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/tables/css/tables.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/src/tables/tests/manual/tables.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/tasks/bower_install.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/tasks/bower_json.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/tasks/license.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/tasks/suppress.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/pure-master/test/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/Gruntfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/bower_install.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/bower_json.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/button.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/buttons-core.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/buttons.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/forms-r.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/forms.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/forms.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/grids-core.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/license.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/menus-core.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/menus-dropdown.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/menus-horizontal.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/menus-scrollable.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/menus-skin.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/menus.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/responsive.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/suppress.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/tables.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/tables.html" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -227,21 +15,40 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/browse_bug$preprocess.coverage" NAME="preprocess Coverage Results" MODIFIED="1536398783916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/BrowserFuzzing$preprocess.coverage" NAME="preprocess Coverage Results" MODIFIED="1536402806503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BrowserFuzzing$preprocess.coverage" NAME="preprocess Coverage Results" MODIFIED="1536654371723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BrowserFuzzing$statisticTool.coverage" NAME="statisticTool Coverage Results" MODIFIED="1536657124853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="preprocess.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="111" column="11" selection-start-line="111" selection-start-column="11" selection-end-line="111" selection-end-column="11" />
+            <state relative-caret-position="-114">
+              <caret line="112" column="31" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
               <folding>
                 <element signature="e#109#122#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statisticTool.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/statisticTool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__builtin__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1494736245/__builtin__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51175">
+              <caret line="2047" column="8" selection-start-line="2047" selection-start-column="8" selection-end-line="2047" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -262,6 +69,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/preprocess.py" />
+        <option value="$PROJECT_DIR$/statisticTool.py" />
       </list>
     </option>
   </component>
@@ -274,18 +82,20 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-11" />
     <option name="y" value="-11" />
     <option name="width" value="1460" />
     <option name="height" value="920" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -297,6 +107,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -324,7 +135,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.statisticTool">
     <configuration name="preprocess" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="BrowserFuzzing" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -339,6 +150,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/preprocess.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="statisticTool" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="BrowserFuzzing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/statisticTool.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -363,8 +193,13 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+    <list>
+      <item itemvalue="Python.preprocess" />
+      <item itemvalue="Python.statisticTool" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.statisticTool" />
         <item itemvalue="Python.preprocess" />
       </list>
     </recent_temporary>
@@ -400,12 +235,11 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3290653" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.3290653" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3277849" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.87580025" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.3290653" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27714285" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3290653" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -416,6 +250,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290653" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,6 +265,50 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2800">
+          <caret line="112" column="31" lean-forward="true" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
+          <folding>
+            <element signature="e#109#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/statisticTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1494736245/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51175">
+          <caret line="2047" column="8" selection-start-line="2047" selection-start-column="8" selection-end-line="2047" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2875">
+          <caret line="115" selection-start-line="115" selection-end-line="115" />
+          <folding>
+            <element signature="e#109#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocess.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2850">
+          <caret line="114" column="39" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
+          <folding>
+            <element signature="e#109#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -465,13 +344,7 @@
     <entry file="file://$PROJECT_DIR$/result/result/accordion.css" />
     <entry file="file://$PROJECT_DIR$/result/result/accordion.html" />
     <entry file="file://$PROJECT_DIR$/result/result/alertBar.js" />
-    <entry file="file://$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/datepicker/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/datasets/angularjs-book-master/chapter8/datepicker/index.html" />
     <entry file="file://$PROJECT_DIR$/result/result/index.html" />
     <entry file="file://$PROJECT_DIR$/result/result/application.js" />
     <entry file="file://$PROJECT_DIR$/result/result/directory.html" />
@@ -487,13 +360,27 @@
     <entry file="file://$PROJECT_DIR$/result/result/benchmark.js" />
     <entry file="file://$PROJECT_DIR$/result/result/bench-multipart-parser.js" />
     <entry file="file://$PROJECT_DIR$/result/result/1.dataBinding.html" />
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/1494736245/__builtin__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51175">
+          <caret line="2047" column="8" selection-start-line="2047" selection-start-column="8" selection-end-line="2047" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/preprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="111" column="11" selection-start-line="111" selection-start-column="11" selection-end-line="111" selection-end-column="11" />
+        <state relative-caret-position="-114">
+          <caret line="112" column="31" selection-start-line="112" selection-start-column="31" selection-end-line="112" selection-end-column="31" />
           <folding>
             <element signature="e#109#122#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/statisticTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
         </state>
       </provider>
     </entry>
