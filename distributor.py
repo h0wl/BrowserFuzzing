@@ -15,16 +15,6 @@ import random
 import sys
 import os
 import re
-
-
-def xhelp():
-    print("[*] -d, --repo_dir       要提取html,css,js的目录路径    <> 如 './target_dir'")
-    print("[*] -o, --output_dir     结果输出文件夹                 <> 默认'./result'")
-    print("[*] -dL --dir_list      批量提取目标目录下的仓库目录   <> 会对目标目录下一层的所有目录做一次提取")
-    print("[*] -h, --help           help帮助                       <> print this help")
-    print("[*] Example : python hcj_sep.py -d './repo'")
-    print("[*] Example : python hcj_sep.py -dL './repos'")
-    sys.exit(1)
 	
 # 输入仓库路径，返回三个一维list，分别对应此仓库的html，css，js文件
 def get_html_css_js_files(repo_path):
@@ -147,7 +137,10 @@ def process_repo(repo_path,output_dir):
 if __name__ == '__main__':
 	repo_path = '../BrowserFuzzingData/repositories' #输入目录
 	output_dir = '../BrowserFuzzingData/result'  # 输出目录
-		
+	
+	#统一html,css,js; 或者 按仓库分html,css,js
+	_split = True
+	
 	repos = [] #二维list，repos[x][0]是目录路径，repos[x][1]是目录名
 	for i in os.listdir(repo_path): #获取所有仓库
 		path = repo_path+'/'+i
@@ -157,6 +150,9 @@ if __name__ == '__main__':
 	count = 1 #计数器
 	for repo_path,repo_name in repos:
 		print('[*] Processing '+str(count)+' repo...')
-		dir = output_dir + '/' + repo_name
+		if _split:
+			dir = output_dir + '/' + repo_name
+		else:
+			dir = output_dir
 		process_repo(repo_path,dir)
 		count+=1
