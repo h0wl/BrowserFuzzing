@@ -86,7 +86,6 @@ def extract_js_css(html_files, js_dir, css_dir):
         except:
             pass
 
-
 # 输入html文件路径的list，将其中所有文件的引用部分和script片段替换为任意变量
 def replace_quote(html_files):
     all_pat = '=".*?\.!(js|png|jpg|gif)"|=\'.*?\.!(js|png|jpg|gif)\''
@@ -94,16 +93,20 @@ def replace_quote(html_files):
     pic_pat = '=".*?\.(png|jpg|gif)"|=\'.*?\.(png|jpg|gif)\'|=.*?\.(png|jpg|gif) '  # 正则替换图片
     script_pat = '<scrip.*?>.*?</script>'  # 正则替换script脚本
     style_pat = '<styl.*?>.*?</style>'  # 正则替换style标签
+    code_pat = '<code.*?>.*?</code>' # 正则替换code标签
+    pre_pat = '<pr.*?>.*?</pre>' # 正则替换pre标签
 
     for html_file in html_files:
         try:
             with open(html_file, 'r') as file:
                 text = re.compile(js_pat, re.S).sub('="a.js"', file.read())
-                text = re.compile(pic_pat, re.S).sub('="b.png"', text)
+                text = re.compile(pic_pat, re.S).sub('="a.png"', text)
                 text = re.compile(script_pat, re.S).sub('', text)  # 替换script片段为空
                 text = re.compile(style_pat, re.S).sub('', text)  # 替换style片段为空
                 text = re.compile(all_pat, re.S).sub('="abc"', text)
-
+                text = re.compile(code_pat, re.S).sub('code-tag', text) # 替换code片段
+                text = re.compile(pre_pat, re.S).sub('pre-tag',text) # 替换pre片段
+                
             with open(html_file, 'w') as file:
                 file.write(text)
         except:
