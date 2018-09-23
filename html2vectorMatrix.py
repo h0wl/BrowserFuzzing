@@ -151,11 +151,10 @@ if __name__ == '__main__':
 	# print(html_string)
 	
 	# 分析矩阵
-	analyzeMatrix(vector_matrix,tagList)
-	
+	# analyzeMatrix(vector_matrix,tagList)
 	# print(len(vector_matrix))
 	
-	# -------------------下面是执行测试----------------
+	# -------------------下面是统计测试----------------
 	
 	# path = './test_html'
 	
