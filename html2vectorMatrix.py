@@ -1,7 +1,8 @@
 #coding:utf8
 
 '''
-输入 html文件 输出一个向量矩阵
+html转向量的函数集合
+core target=>输入 html文件 输出一个向量矩阵
 忽略:
 	- 标签间的内容
 	- 不规范的标签书写方式
@@ -140,7 +141,8 @@ if __name__ == '__main__':
 	
 	html_str = readFile('./index.html') # 读取本地index.html文件
 	
-	vector_matrix = generateMatrix(html_str,tagList) # 获取向量矩阵
+	# 获取向量矩阵 形式:2维list; 矩阵维数: token数*字典数
+	vector_matrix = generateMatrix(html_str,tagList) 
 	
 	# 打印向量矩阵
 	# for i in vector_matrix:
