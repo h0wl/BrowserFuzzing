@@ -4,7 +4,8 @@ from html2vectorMatrix import *
 import os
 
 if __name__ == '__main__':
-	tagList = getTagList() # 读取本地字典
+	tagList_path = "../data/all_tag"
+	tagList = getTagList(tagList_path) # 读取本地字典
 	# html_str = readFile('./index.html') # 读取本地index.html文件
 	# 获取向量矩阵，形式:2维list;  矩阵维数: token数 * 字典大小
 	# vector_matrix = generateMatrix(html_str,tagList) 

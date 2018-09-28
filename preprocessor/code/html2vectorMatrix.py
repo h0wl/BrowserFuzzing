@@ -13,10 +13,10 @@ import re
 import os
 
 # 从本地文件读取标签并返回list(这两个键值对相反)
-def getTagList():
+def getTagList(tag_path):
 	tagList = [] # 初始化标签list
 	try:
-		with open('all_tag','r',encoding="utf8") as file:
+		with open(tag_path,'r',encoding="utf8") as file:
 			for line in file:
 				line = line.replace('\n','').split(' ')
 				tagList.append(line[0])
