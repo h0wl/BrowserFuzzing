@@ -52,4 +52,4 @@ if __name__ == '__main__':
            + ' */\n' \
            + '// comment \n'
     text = execute(text)
-    print (text)
+    print(text)
