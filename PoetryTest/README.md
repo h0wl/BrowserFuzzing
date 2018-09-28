@@ -1,4 +1,4 @@
-# This is a test Project for Chinest poetry auto generating. 
+# This is a test project for Chinest poetry auto generating. 
 ### How To Run It?
 1. Create a Folder which named as 'input' in root folder and put the following txt file in that:<br>
 https://pan.baidu.com/s/1ogfd-uxu64mOo2CAyPkzyA
