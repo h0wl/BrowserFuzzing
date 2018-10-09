@@ -38,44 +38,10 @@ def read_corpus(repository_path):
             for file in files:  # 遍历当前文件
                 file_path = os.path.join(root, file)
                 with open(file_path, "rb") as f:
-                    file_content = '[' + str(f.read()) + ']'
+                    file_content = str(f.read())
                     corpus.append(file_content)
     else:
         print(repository_path + ' is not an directory !')
-
-
-def vectorize(content_of_corpus):
-    global tokenSet
-    tokenSet = js_tokens + chars
-    global dictionary
-    dictionary = dict(zip(tokenSet, range(len(tokenSet))))
-
-    for item in content_of_corpus:
-        try:
-            verctor_of_item = []
-            temp_word = ""
-            for char in item:
-                if char.isdigit() | char.isalpha():
-                    temp_word += char
-                else:
-                    if temp_word.__len__() != 0:
-                        if tokenSet.__contains__(temp_word):
-                            verctor_of_item.append(dictionary[temp_word])
-                        else:
-                            for c in temp_word:
-                                verctor_of_item.append(dictionary[c])
-                    verctor_of_item.append(dictionary[char])
-                    temp_word = ""
-
-            if temp_word.__len__() != 0:
-                if tokenSet.__contains__(temp_word):
-                    verctor_of_item.append(dictionary[temp_word])
-                else:
-                    for c in temp_word:
-                        verctor_of_item.append(dictionary[c])
-            vectors.append(verctor_of_item)
-        except KeyError:
-            continue
 
 
 # ---------------------------------------RNN--------------------------------------#
@@ -88,7 +54,7 @@ def neural_network(rnn_size=128, num_layers=2):
 
     # with tf.variable_scope('rnnlm'):
     with tf.device("/cpu:0"):
-         inputs = tf.nn.embedding_lookup(tf.get_variable("embedding", [len(tokenSet), rnn_size]), input_data)
+        inputs = tf.nn.embedding_lookup(tf.get_variable("embedding", [len(tokenSet), rnn_size]), input_data)
 
     outputs, last_state = tf.nn.dynamic_rnn(cell, inputs, initial_state=initial_state, scope='rnnlm')
     output = tf.reshape(outputs, [-1, rnn_size])
@@ -99,80 +65,59 @@ def neural_network(rnn_size=128, num_layers=2):
     return logits, last_state, probs, cell, initial_state
 
 
-# 训练
-def train_neural_network():
-    logits, last_state, _, _, _ = neural_network()
-    targets = tf.reshape(output_targets, [-1])
-    loss = tf.contrib.legacy_seq2seq.sequence_loss_by_example([logits], [targets],
-                                                              [tf.ones_like(targets, dtype=tf.float32)],
-                                                              len(corpus))
-    cost = tf.reduce_mean(loss)
-    learning_rate = tf.Variable(0.0, trainable=False)
-    tvars = tf.trainable_variables()
-    grads, _ = tf.clip_by_global_norm(tf.gradients(cost, tvars), 5)
-    optimizer = tf.train.AdamOptimizer(learning_rate)
-    train_op = optimizer.apply_gradients(zip(grads, tvars))
+# -------------------------------生成代码---------------------------------#
+# 使用训练完成的模型
+
+def gen_poetry():
+    def to_word(weights):
+        t = np.cumsum(weights)
+        s = np.sum(weights)
+        sample = int(np.searchsorted(t, np.random.rand(1) * s))
+        return tokenSet[sample]
+
+    _, last_state, probs, cell, initial_state = neural_network()
 
     with tf.Session() as sess:
         sess.run(tf.initialize_all_variables())
 
         saver = tf.train.Saver(tf.global_variables())
+        saver.restore(sess, 'C:/Users/Implementist/Desktop/BrowserFuzzingData/result/js.module-49')
 
-        for epoch in range(50):
-            sess.run(tf.assign(learning_rate, 0.002 * (0.97 ** epoch)))
-            n = 0
-            for batche in range(n_chunk):
-                train_loss, _, _ = sess.run([cost, last_state, train_op],
-                                            feed_dict={input_data: x_batches[n], output_targets: y_batches[n]})
-                n += 1
-                print(epoch, batche, train_loss)
-            if epoch % 7 == 0:
-                saver.save(sess, 'C:/Users/Implementist/Desktop/BrowserFuzzingData/result/js.module', global_step=epoch)
+        state_ = sess.run(cell.zero_state(1, tf.float32))
+
+        x = np.array([list(map(dictionary.get, '['))])
+        [probs_, state_] = sess.run([probs, last_state], feed_dict={input_data: x, initial_state: state_})
+        word = to_word(probs_)
+        # word = words[np.argmax(probs_)]
+        code = ''
+        while word != ']':
+            code += word
+            x = np.zeros((1, 1))
+            x[0, 0] = dictionary[word]
+            [probs_, state_] = sess.run([probs, last_state], feed_dict={input_data: x, initial_state: state_})
+            word = to_word(probs_)
+        # word = words[np.argmax(probs_)]
+        return code
 
 
 # Each item of corpus is content of a file
 corpus = []
-# Vectors of corpus.
-vectors = []
 
 # Train 64 files together on each time
-batch_size = 1280
-n_chunk = len(vectors) // batch_size
-x_batches = []
-y_batches = []
+batch_size = 1
 
 input_data = tf.placeholder(tf.int32, [batch_size, None])
 output_targets = tf.placeholder(tf.int32, [batch_size, None])
 if __name__ == '__main__':
+    tokenSet = js_tokens + chars
+    dictionary = dict(zip(tokenSet, range(len(tokenSet))))
+
     repository_path = "C:/Users/Implementist/Desktop/BrowserFuzzingData/result/js"
     # Read file content from corpus
     print("-------------------------Reading Corpus-------------------------")
     read_corpus(repository_path)
     print("Read Out " + str(corpus.__len__()) + " Files From Corpus")
-    # Vectorize content of corpus.
-    print("-------------------------Vectorizing-------------------------")
-    vectorize(corpus)
-    print("Vectorization Finished")
 
-    for i in range(n_chunk):
-        start_index = i * batch_size
-        end_index = start_index + batch_size
+    print("-------------------------Generating-------------------------")
 
-        batches = vectors[start_index:end_index]
-        length = max(map(len, batches))
-        xdata = np.full((batch_size, length), dictionary[' '], np.int32)
-        for row in range(batch_size):
-            xdata[row, :len(batches[row])] = batches[row]
-        ydata = np.copy(xdata)
-        ydata[:, :-1] = xdata[:, 1:]
-        """
-        xdata             ydata
-        [6,2,4,6,9]       [2,4,6,9,9]
-        [1,4,2,8,5]       [4,2,8,5,5]
-        """
-        x_batches.append(xdata)
-        y_batches.append(ydata)
-
-    print("-------------------------Training-------------------------")
-    train_neural_network()
-    print("Train Finished")
+    print("Code : " + gen_poetry())
