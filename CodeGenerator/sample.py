@@ -2,6 +2,7 @@ import tensorflow as tf
 from read_utils import TextConverter
 from model import CharRNN
 import os
+import post_processor
 
 FLAGS = tf.flags.FLAGS
 
@@ -11,7 +12,7 @@ tf.flags.DEFINE_boolean('use_embedding', False, 'whether to use embedding')
 tf.flags.DEFINE_integer('embedding_size', 128, 'size of embedding')
 tf.flags.DEFINE_string('converter_path', 'model/js/converter.pkl', 'model/name/converter.pkl')
 tf.flags.DEFINE_string('checkpoint_path', 'model/js/', 'checkpoint path')
-tf.flags.DEFINE_string('start_string', '', 'use this string to start generating')
+tf.flags.DEFINE_string('start_string', '《', 'use this string to start generating')
 tf.flags.DEFINE_integer('max_length', 2000, 'max length to generate')
 
 
@@ -35,7 +36,10 @@ def main(_):
         arr = model.sample(FLAGS.max_length, start, converter.vocab_size)
         content = converter.arr_to_text(arr)
         content = content.replace("\\t", "\t")
-        f.write(content.replace("\\n", "\n"))
+        content = content.replace("\\r", "\r")
+        content = content.replace("\\n", "\n")
+        content = post_processor.post_process(content)
+        f.write(content)
         f.close()
 
 
