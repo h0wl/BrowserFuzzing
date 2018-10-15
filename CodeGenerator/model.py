@@ -154,6 +154,7 @@ class CharRNN:
         samples.append(c)
 
         # 不断生成字符，直到达到指定数目
+        # TODO: change the following logic to match '》'.
         for i in range(n_samples):
             x = np.zeros((1, 1))
             x[0, 0] = c

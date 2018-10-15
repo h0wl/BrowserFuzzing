@@ -2,38 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31749a83-3590-4cde-b513-f07671a3fddc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/KerasTest2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/predict.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/preprocessor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trainer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/valid.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wonderland.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/.idea/HTML_LSTM_Test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/generator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HTML_LSTM_Test/train_model.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/.idea/PoetryTest.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/code/generator.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PoetryTest/code/train_model.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../CodeGenerator/post_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CodeGenerator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CodeGenerator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CodeGenerator/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CodeGenerator/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CodeGenerator/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CodeGenerator/sample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CodeGenerator/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CodeGenerator/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Preprocessor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Preprocessor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Preprocessor/code/preprocessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Preprocessor/code/preprocessor.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -120,10 +96,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-120" />
-    <option name="y" value="366" />
-    <option name="width" value="1460" />
-    <option name="height" value="855" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1456" />
+    <option name="height" value="916" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -249,7 +225,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="916" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5007163" side_tool="true" weight="0.5462725" />

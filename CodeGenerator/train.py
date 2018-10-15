@@ -16,7 +16,7 @@ tf.flags.DEFINE_boolean('use_embedding', False, 'whether to use embedding')
 tf.flags.DEFINE_integer('embedding_size', 128, 'size of embedding')
 tf.flags.DEFINE_float('learning_rate', 0.01, 'learning_rate')
 tf.flags.DEFINE_float('train_keep_prob', 0.5, 'dropout rate during training')
-tf.flags.DEFINE_string('input_file', '../BrowserFuzzingData/result/js', 'utf8 encoded text file')
+tf.flags.DEFINE_string('input_file', '../../BrowserFuzzingData/result/js', 'utf8 encoded text file')
 tf.flags.DEFINE_integer('max_steps', 2000000, 'max steps to train')
 tf.flags.DEFINE_integer('save_every_n', 1000, 'save the model every n steps')
 tf.flags.DEFINE_integer('log_every_n', 10, 'log to the screen every n steps')
@@ -61,7 +61,7 @@ def read_corpus(repository_path):
             for file in files:  # 遍历当前文件
                 file_path = os.path.join(root, file)
                 with open(file_path, "rb") as f:
-                    corpus += ('\n' + str(f.read()))
+                    corpus += ('《' + str(f.read()) + '》')
     else:
         print(repository_path + ' is not an directory !')
 
