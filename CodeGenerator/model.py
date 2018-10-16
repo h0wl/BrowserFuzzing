@@ -153,21 +153,36 @@ class CharRNN:
         # 添加字符到samples中
         samples.append(c)
 
-        # 不断生成字符，直到达到指定数目
-        # TODO: change the following logic to match '》'.
+        # 不断生成字符，直到达到生成了右书名号“》”
+        # 定义单个变量会出现重定义的情况，因此定义一个数组，用0号位做标记
+        legalFileEnding = [False]
         for i in range(n_samples):
-            x = np.zeros((1, 1))
-            x[0, 0] = c
-            feed = {self.inputs: x,
-                    self.keep_prob: 1.,
-                    self.initial_state: new_state}
-            preds, new_state = sess.run([self.proba_prediction, self.final_state],
-                                        feed_dict=feed)
+            c = self.sample_one_character(c, sess, new_state, vocab_size)
+            if c.__eq__('》'):
+                legalFileEnding[0] = True
+                break
+            else:
+                samples.append(c)
 
-            c = pick_top_n(preds, vocab_size)
-            samples.append(c)
+        while not legalFileEnding[0]:
+            c = self.sample_one_character(c, sess, new_state, vocab_size)
+            if c.__eq__('》'):
+                legalFileEnding[0] = True
+                break
+            else:
+                samples.append(c)
 
         return np.array(samples)
+
+    def sample_one_character(self, c, sess, new_state, vocab_size):
+        x = np.zeros((1, 1))
+        x[0, 0] = c
+        feed = {self.inputs: x,
+                self.keep_prob: 1.,
+                self.initial_state: new_state}
+        preds, new_state = sess.run([self.proba_prediction, self.final_state],
+                                    feed_dict=feed)
+        return pick_top_n(preds, vocab_size)
 
     def load(self, checkpoint):
         self.session = tf.Session()

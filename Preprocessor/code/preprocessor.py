@@ -101,7 +101,7 @@ def execute_pre_process():
             # TODO: 这里留给css，暂时不执行任何动作
             else:
                 pass
-        print('execute pre-process finished on ' + str(file_count) + ' ' + FLAGS.file_type + 'files.')
+        print('execute pre-process finished on ' + str(file_count) + ' ' + FLAGS.file_type + ' files.')
     else:
         print('\'' + corpus_path + '\' is not a directory.')
 

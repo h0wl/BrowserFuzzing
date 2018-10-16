@@ -1,7 +1,6 @@
 # coding:utf8
 
-from html2vectorMatrix import *
-import os
+from code.html2vectorMatrix import *
 
 if __name__ == '__main__':
     tagList_path = "../data/all_tag"
