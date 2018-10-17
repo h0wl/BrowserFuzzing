@@ -43,20 +43,30 @@ def remove_comments_3(text):
     return re.sub('/\*[\s\S]*?\*/', '', text)
 
 
-def mangle(file_name, corpus_path):
+def uglify_js(file_name, corpus_path):
     """
-    js预处理，包括去注释、变量名替换、压缩后再美化
+    通过uglifyjs对JS语料库进行预处理，包括去注释、变量名替换、压缩
+    遇到有语法错误的文件会报错，利用这个特性删除包含语法错误的代码
     """
 
     file_abspath = os.path.abspath(corpus_path + '/' + file_name)
     cmd = ['uglifyjs', file_abspath, '-o', file_abspath, '-m']
-    p = subprocess.Popen(cmd, cwd='/home/gxy/BrowserFuzzing/UglifyJS2/bin')
-    p.wait()
+    p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+    # 下面这行注释针对Windows本地
+    # p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
+    if (p.poll() is None) and p.stderr.readline() and os.path.exists(file_abspath):
+        os.remove(file_abspath)
+        print('File \'' + file_name + '\' Contains Syntax Error. Deleted.')
+        return 1
+    return 0
 
 
 def format_code(text):
     while text.__contains__('\n\n'):
         text = text.replace('\n\n', '\n')
+
+    while text.__contains__('  '):
+        text = text.replace('  ', ' ')
     return re.sub('[\n\t][\r ]*?[\n\t]', '\n', text)
 
 
@@ -76,9 +86,10 @@ def execute_pre_process():
 
     # 拼装语料库路径
     corpus_path = '../../../BrowserFuzzingData/result/' + FLAGS.file_type
-    print('----------------------- executing pre-process -----------------------')
+    print('----------------------- Executing Pre-Process -----------------------')
     file_count = 0
     counter = 0
+    illegal_counter = 0
     if os.path.isdir(corpus_path):
         for root, dirs, files in os.walk(corpus_path):
             # 统计语料库中源文件个数
@@ -88,7 +99,8 @@ def execute_pre_process():
                 for file in files:
                     counter += 1
                     print('processing: ' + str(counter))
-                    mangle(file, corpus_path)
+                    illegal_counter += uglify_js(file, corpus_path)
+                print(str(illegal_counter) + ' Illegal JavaScript Files Has Been Removed.')
             # 如果本次预处理是对html文件执行
             elif FLAGS.file_type.__eq__('html'):
                 for file in files:
@@ -101,7 +113,7 @@ def execute_pre_process():
             # TODO: 这里留给css，暂时不执行任何动作
             else:
                 pass
-        print('execute pre-process finished on ' + str(file_count) + ' ' + FLAGS.file_type + ' files.')
+        print('Execute Pre-Process Finished on ' + str(file_count) + ' ' + FLAGS.file_type + ' Files.')
     else:
         print('\'' + corpus_path + '\' is not a directory.')
 

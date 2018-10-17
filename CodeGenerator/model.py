@@ -128,7 +128,7 @@ class CharRNN:
                     print('step: {}/{}... '.format(step, max_steps),
                           'loss: {:.4f}... '.format(batch_loss),
                           '{:.4f} sec/batch'.format((end - start)))
-                if (step % save_every_n == 0):
+                if step % save_every_n == 0:
                     self.saver.save(sess, os.path.join(save_path, 'model'), global_step=step)
                 if step >= max_steps:
                     break

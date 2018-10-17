@@ -6,6 +6,7 @@ import post_processor
 
 FLAGS = tf.flags.FLAGS
 
+tf.flags.DEFINE_string('file_type', 'js', 'name of the model')
 tf.flags.DEFINE_integer('lstm_size', 128, 'size of hidden state of lstm')
 tf.flags.DEFINE_integer('num_layers', 2, 'number of lstm layers')
 tf.flags.DEFINE_boolean('use_embedding', False, 'whether to use embedding')
@@ -31,16 +32,27 @@ def main(_):
 
     start = converter.text_to_arr(FLAGS.start_string)
 
+    # JS/Html/CSS
     for i in range(0, 100):
-        f = open("./generated/js/" + str(i) + ".js", "x")
+        file_path = './generated/' + FLAGS.file_type + '/' + str(i) + '.' + FLAGS.file_type
+        f = open(file_path, "x")
         arr = model.sample(FLAGS.max_length, start, converter.vocab_size)
         content = converter.arr_to_text(arr)
         content = content.replace("\\t", "\t")
         content = content.replace("\\r", "\r")
         content = content.replace("\\n", "\n")
-        content = post_processor.post_process(content)
-        f.write(content)
-        f.close()
+
+        if FLAGS.file_type.__eq__('js'):
+            f.write(content)
+            f.close()
+            post_processor.mangle(file_path)
+        elif FLAGS.file_type.__eq__('html'):
+            content = post_processor.post_process(content)
+            f.write(content)
+            f.close()
+        # TODO: 预留给CSS，暂不作任何处理
+        else:
+            pass
 
 
 if __name__ == '__main__':
