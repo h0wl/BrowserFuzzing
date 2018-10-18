@@ -3,7 +3,7 @@ import os
 import tensorflow as tf
 
 from model import CharRNN
-from read_utils import TextConverter, batch_generator
+from convertor import TextConverter, batch_generator
 
 FLAGS = tf.flags.FLAGS
 

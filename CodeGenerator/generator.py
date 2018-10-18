@@ -1,5 +1,5 @@
 import tensorflow as tf
-from read_utils import TextConverter
+from convertor import TextConverter
 from model import CharRNN
 import os
 import post_processor
@@ -45,7 +45,7 @@ def main(_):
         if FLAGS.file_type.__eq__('js'):
             f.write(content)
             f.close()
-            post_processor.mangle(file_path)
+            post_processor.execute_post_process()
         elif FLAGS.file_type.__eq__('html'):
             content = post_processor.post_process(content)
             f.write(content)
@@ -56,4 +56,7 @@ def main(_):
 
 
 if __name__ == '__main__':
+    FLAGS = tf.flags.FLAGS
+    tf.flags.DEFINE_string('file_type', 'js', 'File Type of Current Progress')
+    tf.flags.DEFINE_string('generated_folder', '../../BrowserFuzzingData/generated/', 'Path of Generated Folder')
     tf.app.run()

@@ -43,24 +43,6 @@ def remove_comments_3(text):
     return re.sub('/\*[\s\S]*?\*/', '', text)
 
 
-def uglify_js(file_name, corpus_path):
-    """
-    通过uglifyjs对JS语料库进行预处理，包括去注释、变量名替换、压缩
-    遇到有语法错误的文件会报错，利用这个特性删除包含语法错误的代码
-    """
-
-    file_abspath = os.path.abspath(corpus_path + '/' + file_name)
-    cmd = ['uglifyjs', file_abspath, '-o', file_abspath, '-m']
-    p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
-    # 下面这行注释针对Windows本地
-    # p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
-    if (p.poll() is None) and p.stderr.readline() and os.path.exists(file_abspath):
-        os.remove(file_abspath)
-        print('File \'' + file_name + '\' Contains Syntax Error. Deleted.')
-        return 1
-    return 0
-
-
 def format_code(text):
     while text.__contains__('\n\n'):
         text = text.replace('\n\n', '\n')
@@ -79,14 +61,37 @@ def pre_process(text):
     return text.strip('\n\t')
 
 
+def uglify_js(file_name, corpus_path):
+    """
+    通过uglifyjs对JS语料库进行预处理，包括去注释、变量名替换、压缩
+    遇到有语法错误的文件会报错，利用这个特性删除包含语法错误的代码
+    """
+
+    file_abspath = os.path.abspath(corpus_path + '/' + file_name)
+    cmd = ['uglifyjs', file_abspath, '-o', file_abspath, '-m']
+    p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+    # 下面这行注释针对Windows本地
+    # p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
+    if (p.poll() is None) and p.stderr.readline() and os.path.exists(file_abspath):
+        os.remove(file_abspath)
+        print('File \'' + file_name + '\' Contains Syntax Error. Deleted.')
+        return 1
+    return 0
+
+
 def execute_pre_process():
     """
     遍历指定的语料库，执行预处理操作
     """
 
     # 拼装语料库路径
-    corpus_path = '../../../BrowserFuzzingData/result/' + FLAGS.file_type
+    corpus_path = FLAGS.corpus_folder + FLAGS.file_type
+    # 如果文件夹不存在，创建
+    if not os.path.exists(corpus_path):
+        os.mkdir(corpus_path)
+
     print('----------------------- Executing Pre-Process -----------------------')
+
     file_count = 0
     counter = 0
     illegal_counter = 0
@@ -121,4 +126,5 @@ def execute_pre_process():
 if __name__ == '__main__':
     FLAGS = tf.flags.FLAGS
     tf.flags.DEFINE_string('file_type', 'js', 'File type of current execution.')
+    tf.flags.DEFINE_string('corpus_folder', '../../../BrowserFuzzingData/result/', 'Path of Corpus Folder')
     execute_pre_process()
