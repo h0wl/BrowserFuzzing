@@ -68,13 +68,14 @@ def uglify_js(file_name, corpus_path):
 
     file_abspath = os.path.abspath(corpus_path + '/' + file_name)
     cmd = ['uglifyjs', file_abspath, '-o', file_abspath, '-m', '-b']
-    p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+    # p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
     # 下面这行注释针对Windows本地
-    # p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
+    p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
     p.wait()
 
 
 def execute_post_process():
+    FLAGS = tf.flags.FLAGS
     # 拼装语料库路径
     generated_path = FLAGS.generated_folder + FLAGS.file_type
     # 如果文件夹不存在，创建
@@ -112,8 +113,8 @@ def execute_post_process():
         print('\'' + generated_path + '\' is not a directory.')
 
 
-if __name__ == '__main__':
-    FLAGS = tf.flags.FLAGS
-    tf.flags.DEFINE_string('file_type', 'js', 'File Type of Current Progress')
-    tf.flags.DEFINE_string('generated_folder', '../../BrowserFuzzingData/generated/', 'Path of Generated Folder')
-    execute_post_process()
+# if __name__ == '__main__':
+#     FLAGS = tf.flags.FLAGS
+#     tf.flags.DEFINE_string('file_type', 'js', 'File Type of Current Progress')
+#     tf.flags.DEFINE_string('generated_folder', '../../BrowserFuzzingData/generated/', 'Path of Generated Folder')
+#     execute_post_process()

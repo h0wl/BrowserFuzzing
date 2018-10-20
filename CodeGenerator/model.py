@@ -18,8 +18,8 @@ def pick_top_n(preds, vocab_size, top_n=5):
 
 
 class CharRNN:
-    def __init__(self, num_classes, num_seqs=64, num_steps=50,
-                 lstm_size=128, num_layers=2, learning_rate=0.001,
+    def __init__(self, num_classes, num_seqs=64, num_steps=64,
+                 lstm_size=256, num_layers=2, learning_rate=0.01,
                  grad_clip=5, sampling=False, train_keep_prob=0.5, use_embedding=False, embedding_size=128):
         if sampling is True:
             num_seqs, num_steps = 1, 1
@@ -42,7 +42,7 @@ class CharRNN:
         self.build_lstm()
         self.build_loss()
         self.build_optimizer()
-        self.saver = tf.train.Saver()
+        self.saver = tf.train.Saver(max_to_keep=1000)
 
     def build_inputs(self):
         with tf.name_scope('inputs'):
@@ -57,7 +57,7 @@ class CharRNN:
             if self.use_embedding is False:
                 self.lstm_inputs = tf.one_hot(self.inputs, self.num_classes)
             else:
-                with tf.device("/cpu:0"):
+                with tf.device('/gpu:0') and tf.device('/gpu:1') and tf.device('/gpu:2') and tf.device('/gpu:3'):
                     embedding = tf.get_variable('embedding', [self.num_classes, self.embedding_size])
                     self.lstm_inputs = tf.nn.embedding_lookup(embedding, self.inputs)
 
@@ -125,9 +125,11 @@ class CharRNN:
                 end = time.time()
                 # control the print lines
                 if step % log_every_n == 0:
+                    # validate_accuracy = sess.run(accuracy, feed_dict=validate_feed)
+                    # test_accuracy = sess.run(accuracy, feed_dict=test_feed)
                     print('step: {}/{}... '.format(step, max_steps),
-                          'loss: {:.4f}... '.format(batch_loss),
-                          '{:.4f} sec/batch'.format((end - start)))
+                          'loss: {:.8f}... '.format(batch_loss),
+                          '{:.8f} sec/batch'.format((end - start)))
                 if step % save_every_n == 0:
                     self.saver.save(sess, os.path.join(save_path, 'model'), global_step=step)
                 if step >= max_steps:
@@ -158,19 +160,18 @@ class CharRNN:
         legalFileEnding = [False]
         for i in range(n_samples):
             c = self.sample_one_character(c, sess, new_state, vocab_size)
-            if c.__eq__('》'):
+            if c == '》':
                 legalFileEnding[0] = True
                 break
             else:
                 samples.append(c)
 
-        while not legalFileEnding[0]:
-            c = self.sample_one_character(c, sess, new_state, vocab_size)
-            if c.__eq__('》'):
-                legalFileEnding[0] = True
-                break
-            else:
-                samples.append(c)
+        # while not legalFileEnding[0]:
+        #     c = self.sample_one_character(c, sess, new_state, vocab_size)
+        #     if c == '》':
+        #         legalFileEnding[0] = True
+        #     else:
+        #         samples.append(c)
 
         return np.array(samples)
 

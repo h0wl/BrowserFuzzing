@@ -1,5 +1,6 @@
 import copy
 import pickle
+import time
 
 import numpy as np
 
@@ -9,7 +10,7 @@ js_tokens = ['abstract', 'arguments', 'boolean', 'break', 'byte', 'case', 'catch
              'import', 'in', 'instanceof', 'int', 'interface', 'let', 'long', 'native', 'new', 'null', 'package',
              'private', 'protected', 'public', 'return', 'short', 'static', 'super', 'switch', 'synchronized',
              'this', 'throw', 'throws', 'transient', 'true', 'try', 'typeof', 'var', 'void', 'volatile', 'while',
-             'with', 'yield', 'Array', 'Date', 'eval', 'function', 'hasOwnProperty', 'Infinity', 'isFinite', 'isNaN',
+             'with', 'yield', 'Array', 'Date', 'hasOwnProperty', 'Infinity', 'isFinite', 'isNaN',
              'isPrototypeOf', 'length', 'Math', 'NaN', 'name', 'Number', 'Object', 'prototype', 'String', 'toString',
              'undefined', 'valueOf', 'getClass', 'java', 'JavaArray', 'javaClass', 'JavaObject', 'JavaPackage',
              'alert', 'all', 'anchor', 'anchors', 'area', 'assign', 'blur', 'button', 'checkbox', 'clearInterval',
@@ -23,6 +24,12 @@ js_tokens = ['abstract', 'arguments', 'boolean', 'break', 'byte', 'case', 'catch
              'scroll', 'secure', 'select', 'self', 'setInterval', 'setTimeout', 'status', 'submit', 'taint', 'text',
              'textarea', 'top', 'unescape', 'untaint', 'window', 'onblur', 'obclick', 'onerror', 'onfocus', 'onkeydown',
              'onkeypress', 'onkeyup', 'onmouseover', 'onload', 'onmouseup', 'onmousedown', 'onsubmit']
+
+chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+         'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+         'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '~', '!', '@', '#',
+         '$', '%', '^', '&', '*', '(', ')', '-', '+', '_', '=', '[', ']', '{', '}', ';', ':', '\'', '"', ',', '.', '<',
+         '>', '/', '?', '\\', '|', '`', ' ', '\n', '\r', '《', '》']
 
 
 def batch_generator(arr, n_seqs, n_steps):
@@ -41,63 +48,82 @@ def batch_generator(arr, n_seqs, n_steps):
 
 
 def count_word_frequency(vocab_count, text):
-    try:
-        temp_word = ""
-        for char in text:
-            if char.isdigit() | char.isalpha():
-                temp_word += char
-            else:
-                if temp_word.__len__() != 0:
-                    if tokenSet.__contains__(temp_word):
-                        vocab_count[dictionary[temp_word]] += 1
-                    else:
-                        for c in temp_word:
-                            vocab_count[dictionary[c]] += 1
-                vocab_count[dictionary[char]] += 1
-                temp_word = ""
-
-        if temp_word.__len__() != 0:
-            if tokenSet.__contains__(temp_word):
-                vocab_count[dictionary[temp_word]] += 1
-            else:
-                for c in temp_word:
-                    vocab_count[dictionary[c]] += 1
-        return vocab_count
-    except KeyError:
-        pass
-
-
-def vectorize(text):
-    vector_of_text = []
+    print('------------------------------ Counting Word Frequency ------------------------------')
+    time_start = time.time()
     temp_word = ""
     for char in text:
-        if char.isdigit() | char.isalpha():
+        if char.isalpha():
             temp_word += char
         else:
             if temp_word.__len__() != 0:
                 if tokenSet.__contains__(temp_word):
-                    vector_of_text.append(dictionary[temp_word])
+                    vocab_count[temp_word] += 1
                 else:
                     for c in temp_word:
-                        vector_of_text.append(dictionary[c])
-            vector_of_text.append(dictionary[char])
+                        try:
+                            vocab_count[c] += 1
+                        except KeyError:
+                            pass
+            try:
+                vocab_count[char] += 1
+            except KeyError:
+                pass
             temp_word = ""
 
     if temp_word.__len__() != 0:
         if tokenSet.__contains__(temp_word):
-            vector_of_text.append(dictionary[temp_word])
+            vocab_count[temp_word] += 1
         else:
             for c in temp_word:
-                vector_of_text.append(dictionary[c])
+                try:
+                    vocab_count[c] += 1
+                except KeyError:
+                    pass
+    print('Count Word Frequency Finished in ' + str(time.time() - time_start) + ' Seconds.')
+    return vocab_count
+
+
+def vectorize(text, word_to_int_table):
+    print('------------------------------ Vectorizing Corpus ------------------------------')
+    time_start = time.time()
+    temp_word = ""
+    vector_of_text = []
+    for char in text:
+        if char.isalpha():
+            temp_word += char
+        else:
+            if temp_word.__len__() != 0:
+                if tokenSet.__contains__(temp_word):
+                    vector_of_text.append(word_to_int_table[temp_word])
+                else:
+                    for c in temp_word:
+                        try:
+                            vector_of_text.append(word_to_int_table[c])
+                        except KeyError:
+                            pass
+            try:
+                vector_of_text.append(word_to_int_table[char])
+            except KeyError:
+                pass
+            temp_word = ""
+
+    if temp_word.__len__() != 0:
+        if tokenSet.__contains__(temp_word):
+            vector_of_text.append(word_to_int_table[temp_word])
+        else:
+            for c in temp_word:
+                try:
+                    vector_of_text.append(word_to_int_table[c])
+                except KeyError:
+                    pass
+    print('Vectorize Corpus Finished in ' + str(time.time() - time_start) + ' Seconds.')
     return vector_of_text
 
 
 class TextConverter(object):
     def __init__(self, text=None, max_vocab=5000, filename=None):
         global tokenSet
-        tokenSet = js_tokens + list(set(text))
-        global dictionary
-        dictionary = dict(zip(tokenSet, range(len(tokenSet))))
+        tokenSet = js_tokens + chars
 
         if filename is not None:
             with open(filename, 'rb') as f:
@@ -140,28 +166,7 @@ class TextConverter(object):
             raise Exception('Unknown index!')
 
     def text_to_arr(self, text):
-        vector_of_text = []
-        temp_word = ""
-        for char in text:
-            if char.isdigit() | char.isalpha():
-                temp_word += char
-            else:
-                if temp_word.__len__() != 0:
-                    if tokenSet.__contains__(temp_word):
-                        vector_of_text.append(dictionary[temp_word])
-                    else:
-                        for c in temp_word:
-                            vector_of_text.append(dictionary[c])
-                vector_of_text.append(dictionary[char])
-                temp_word = ""
-
-        if temp_word.__len__() != 0:
-            if tokenSet.__contains__(temp_word):
-                vector_of_text.append(dictionary[temp_word])
-            else:
-                for c in temp_word:
-                    vector_of_text.append(dictionary[c])
-        return np.array(vector_of_text)
+        return np.array(vectorize(text, self.word_to_int_table))
 
     def arr_to_text(self, arr):
         words = []

@@ -146,12 +146,12 @@ def process_repo(repo_path, output_dir, split=True):
     html_files, css_files, js_files = get_html_css_js_files(output_dir)
     # 提取js,css到新目录下
     extract_js_css(html_files, output_js_dir, output_css_dir)
-    replace_quote(html_files)  # 对html文件做变量替换
+    # replace_quote(html_files)  # 对html文件做变量替换
 
 
 if __name__ == '__main__':
-    repo_path = '../BrowserFuzzingData/repositories'  # 输入目录
-    output_dir = '../BrowserFuzzingData/result'  # 输出目录
+    repo_path = '../../../BrowserFuzzingData/repositories'  # 输入目录
+    output_dir = '../../../BrowserFuzzingData/result'  # 输出目录
 
     # 按仓库分html,css,js 或者  统一html,css,js;
     _split = False

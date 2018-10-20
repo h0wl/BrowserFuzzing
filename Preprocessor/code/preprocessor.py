@@ -2,7 +2,7 @@
 import os
 import re
 import subprocess
-
+from db_operation import *
 import tensorflow as tf
 
 
@@ -67,14 +67,14 @@ def uglify_js(file_name, corpus_path):
     遇到有语法错误的文件会报错，利用这个特性删除包含语法错误的代码
     """
 
-    file_abspath = os.path.abspath(corpus_path + '/' + file_name)
-    cmd = ['uglifyjs', file_abspath, '-o', file_abspath, '-m']
-    p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+    file_path = corpus_path + '/' + file_name
+    cmd = ['uglifyjs', file_path, '-o', file_path, '-m', '-b']
+    # p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
     # 下面这行注释针对Windows本地
-    # p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
-    if (p.poll() is None) and p.stderr.readline() and os.path.exists(file_abspath):
-        os.remove(file_abspath)
-        print('File \'' + file_name + '\' Contains Syntax Error. Deleted.')
+    p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
+    if ((p.poll() is None) and p.stderr.readline() and os.path.exists(file_path)) or not os.path.getsize(file_path):
+        os.remove(file_path)
+        print('File \'' + file_name + '\' Contains Syntax Error or Content Is Empty. Been Deleted.')
         return 1
     return 0
 
@@ -123,8 +123,46 @@ def execute_pre_process():
         print('\'' + corpus_path + '\' is not a directory.')
 
 
+def write_corpus_to_db():
+    """
+    将语料写入数据库
+    """
+    # 拼装数据库文件路径
+    db_path = FLAGS.db_folder + FLAGS.file_type + '_corpus.db'
+
+    if not os.path.exists(db_path):
+        init_db(db_path)
+
+    # 拼装语料库路径
+    corpus_path = FLAGS.corpus_folder + FLAGS.file_type
+    # 如果文件夹不存在，创建
+    if not os.path.exists(corpus_path):
+        os.mkdir(corpus_path)
+
+    print('----------------------- Executing Write Corpus to DB -----------------------')
+
+    file_count = 0
+    counter = 0
+    if os.path.isdir(corpus_path):
+        for root, dirs, files in os.walk(corpus_path):
+            # 统计语料库中源文件个数
+            file_count = files.__len__()
+            # 如果本次预处理是对js文件执行
+            if FLAGS.file_type.__eq__('js'):
+                for file in files:
+                    counter += 1
+                    print('processing: ' + str(counter))
+                    with open(corpus_path + '/' + file, 'rb') as f:
+                        insert(counter, f.read())
+        print('Execute Write Corpus to DB on ' + str(file_count) + ' ' + FLAGS.file_type + ' Files.')
+    else:
+        print('\'' + corpus_path + '\' is not a directory.')
+
+
 if __name__ == '__main__':
     FLAGS = tf.flags.FLAGS
     tf.flags.DEFINE_string('file_type', 'js', 'File type of current execution.')
     tf.flags.DEFINE_string('corpus_folder', '../../../BrowserFuzzingData/result/', 'Path of Corpus Folder')
+    tf.flags.DEFINE_string('db_folder', '../../../BrowserFuzzingData/db/', 'Path of Corpus Folder')
     execute_pre_process()
+    write_corpus_to_db()
