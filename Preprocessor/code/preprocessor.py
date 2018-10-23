@@ -43,6 +43,17 @@ def remove_comments_3(text):
     return re.sub('/\*[\s\S]*?\*/', '', text)
 
 
+def normalize_strings(text):
+    """
+    去除形如
+    /*
+     * comments
+     */
+     的块级注释
+    """
+    return re.sub('"[\s\S]*?"', '""', text)
+
+
 def format_code(text):
     while text.__contains__('\n\n'):
         text = text.replace('\n\n', '\n')
@@ -69,9 +80,9 @@ def uglify_js(file_name, corpus_path):
 
     file_path = corpus_path + '/' + file_name
     cmd = ['uglifyjs', file_path, '-o', file_path, '-m', '-b']
-    # p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+    p = subprocess.Popen(cmd, stderr=subprocess.PIPE)
     # 下面这行注释针对Windows本地
-    p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
+    # p = subprocess.Popen(cmd, shell=True, stderr=subprocess.PIPE)
     if ((p.poll() is None) and p.stderr.readline() and os.path.exists(file_path)) or not os.path.getsize(file_path):
         os.remove(file_path)
         print('File \'' + file_name + '\' Contains Syntax Error or Content Is Empty. Been Deleted.')
@@ -153,7 +164,7 @@ def write_corpus_to_db():
                     counter += 1
                     print('processing: ' + str(counter))
                     with open(corpus_path + '/' + file, 'rb') as f:
-                        insert(counter, f.read())
+                        insert(counter, normalize_strings(f.read().decode()))
         print('Execute Write Corpus to DB on ' + str(file_count) + ' ' + FLAGS.file_type + ' Files.')
     else:
         print('\'' + corpus_path + '\' is not a directory.')
