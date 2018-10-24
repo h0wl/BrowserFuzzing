@@ -25,7 +25,7 @@ def insert(index, byte_array_of_content):
 def query_all():
     conn = db.connect(connection_url)
     cursor = conn.cursor()
-    sql = "SELECT * FROM corpus"
+    sql = "SELECT Content FROM corpus"
     cursor.execute(sql)
     result = cursor.fetchall()
     conn.close()

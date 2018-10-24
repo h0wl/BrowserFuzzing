@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5eb4ccbd-3ce7-4ee9-8240-4ee543aa7f31" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../CodeGenerator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CodeGenerator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CodeGenerator/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/../CodeGenerator/generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/db_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/db_operation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/sample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/preprocessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/preprocessor.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -246,6 +248,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="916" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32947233" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />

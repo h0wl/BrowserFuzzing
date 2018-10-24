@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e1b1584e-42e8-4f61-a68e-6bdd5f6ffb37" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/db_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/db_operation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/sample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Generator/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Preprocessor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Preprocessor/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Preprocessor/code/preprocessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Preprocessor/code/preprocessor.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -173,7 +175,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1456" />
@@ -383,7 +385,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="916" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32904884" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32904884" />

@@ -58,14 +58,14 @@ class CharRNN:
             if self.use_embedding is False:
                 self.lstm_inputs = tf.one_hot(self.inputs, self.num_classes)
             else:
-                with tf.device("/gpu:0") and tf.device("/gpu:1") and tf.device("/gpu:2") and tf.device("/gpu:3"):
+                with tf.device("/cpu:0"):
                     embedding = tf.get_variable('embedding', [self.num_classes, self.embedding_size])
                     self.lstm_inputs = tf.nn.embedding_lookup(embedding, self.inputs)
 
     def build_lstm(self):
         # 创建单个cell并堆叠多层
         def get_a_cell(lstm_size, keep_prob):
-            lstm = tf.nn.rnn_cell.BasicLSTMCell(lstm_size)
+            lstm = tf.nn.rnn_cell.LSTMCell(lstm_size)
             drop = tf.nn.rnn_cell.DropoutWrapper(lstm, output_keep_prob=keep_prob)
             return drop
 
@@ -94,7 +94,7 @@ class CharRNN:
         with tf.name_scope('loss'):
             y_one_hot = tf.one_hot(self.targets, self.num_classes)
             y_reshaped = tf.reshape(y_one_hot, self.logits.get_shape())
-            loss = tf.nn.softmax_cross_entropy_with_logits(logits=self.logits, labels=y_reshaped)
+            loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.logits, labels=y_reshaped)
             self.loss = tf.reduce_mean(loss)
 
     def build_optimizer(self):
@@ -152,7 +152,7 @@ class CharRNN:
                                                 feed_dict=feed)
         return validating_batch_loss
 
-    def sample(self, n_samples, prime, vocab_size):
+    def sample(self, n_samples, prime, vocab_size, word_to_int):
         samples = [c for c in prime]
         sess = self.session
         new_state = sess.run(self.initial_state)
@@ -172,7 +172,8 @@ class CharRNN:
         samples.append(c)
 
         # 不断生成字符，直到达到指定数目
-        for i in range(n_samples):
+        char_counter = {}
+        for i in range(100):
             x = np.zeros((1, 1))
             x[0, 0] = c
             feed = {self.inputs: x,
@@ -182,6 +183,26 @@ class CharRNN:
                                         feed_dict=feed)
 
             c = pick_top_n(preds, vocab_size)
+            samples.append(c)
+
+        char_counter['('] = samples.count(word_to_int('('))
+        char_counter[')'] = samples.count(word_to_int(')'))
+        char_counter['['] = samples.count(word_to_int('['))
+        char_counter[']'] = samples.count(word_to_int(']'))
+        char_counter['{'] = samples.count(word_to_int('{'))
+        char_counter['}'] = samples.count(word_to_int('}'))
+        while char_counter['('] != char_counter[')'] or char_counter['['] != char_counter[']'] or char_counter['{'] != \
+                char_counter['}']:
+            x = np.zeros((1, 1))
+            x[0, 0] = c
+            feed = {self.inputs: x,
+                    self.keep_prob: 1.,
+                    self.initial_state: new_state}
+            preds, new_state = sess.run([self.proba_prediction, self.final_state],
+                                        feed_dict=feed)
+
+            c = pick_top_n(preds, vocab_size)
+            samples[c] += 1
             samples.append(c)
 
         return np.array(samples)
