@@ -18,8 +18,8 @@ def pick_top_n(preds, vocab_size, top_n=5):
 
 
 class CharRNN:
-    def __init__(self, num_classes, num_seqs=64, num_steps=64,
-                 lstm_size=256, num_layers=2, learning_rate=0.01,
+    def __init__(self, num_classes, validating_batch_generator, num_seqs=64, num_steps=50,
+                 lstm_size=128, num_layers=2, learning_rate=0.001,
                  grad_clip=5, sampling=False, train_keep_prob=0.5, use_embedding=False, embedding_size=128):
         if sampling is True:
             num_seqs, num_steps = 1, 1
@@ -36,6 +36,7 @@ class CharRNN:
         self.train_keep_prob = train_keep_prob
         self.use_embedding = use_embedding
         self.embedding_size = embedding_size
+        self.validating_batch_generator = validating_batch_generator
 
         tf.reset_default_graph()
         self.build_inputs()
@@ -57,14 +58,14 @@ class CharRNN:
             if self.use_embedding is False:
                 self.lstm_inputs = tf.one_hot(self.inputs, self.num_classes)
             else:
-                with tf.device('/gpu:0') and tf.device('/gpu:1') and tf.device('/gpu:2') and tf.device('/gpu:3'):
+                with tf.device("/cpu:0"):
                     embedding = tf.get_variable('embedding', [self.num_classes, self.embedding_size])
                     self.lstm_inputs = tf.nn.embedding_lookup(embedding, self.inputs)
 
     def build_lstm(self):
         # 创建单个cell并堆叠多层
         def get_a_cell(lstm_size, keep_prob):
-            lstm = tf.nn.rnn_cell.BasicLSTMCell(lstm_size)
+            lstm = tf.nn.rnn_cell.LSTMCell(lstm_size)
             drop = tf.nn.rnn_cell.DropoutWrapper(lstm, output_keep_prob=keep_prob)
             return drop
 
@@ -93,7 +94,7 @@ class CharRNN:
         with tf.name_scope('loss'):
             y_one_hot = tf.one_hot(self.targets, self.num_classes)
             y_reshaped = tf.reshape(y_one_hot, self.logits.get_shape())
-            loss = tf.nn.softmax_cross_entropy_with_logits(logits=self.logits, labels=y_reshaped)
+            loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.logits, labels=y_reshaped)
             self.loss = tf.reduce_mean(loss)
 
     def build_optimizer(self):
@@ -103,14 +104,15 @@ class CharRNN:
         train_op = tf.train.AdamOptimizer(self.learning_rate)
         self.optimizer = train_op.apply_gradients(zip(grads, tvars))
 
-    def train(self, batch_generator, max_steps, save_path, save_every_n, log_every_n):
+    def train(self, training_batch_generator, max_steps, save_path, validate_every_n_steps, log_every_n):
         self.session = tf.Session()
+        validating_loss = 10000
         with self.session as sess:
             sess.run(tf.global_variables_initializer())
             # Train network
             step = 0
             new_state = sess.run(self.initial_state)
-            for x, y in batch_generator:
+            for x, y in training_batch_generator:
                 step += 1
                 start = time.time()
                 feed = {self.inputs: x,
@@ -125,18 +127,32 @@ class CharRNN:
                 end = time.time()
                 # control the print lines
                 if step % log_every_n == 0:
-                    # validate_accuracy = sess.run(accuracy, feed_dict=validate_feed)
-                    # test_accuracy = sess.run(accuracy, feed_dict=test_feed)
                     print('step: {}/{}... '.format(step, max_steps),
-                          'loss: {:.8f}... '.format(batch_loss),
-                          '{:.8f} sec/batch'.format((end - start)))
-                if step % save_every_n == 0:
-                    self.saver.save(sess, os.path.join(save_path, 'model'), global_step=step)
+                          'loss: {:.4f}... '.format(batch_loss),
+                          '{:.4f} sec/batch'.format((end - start)))
+                # 每隔validate_every_n_steps验证一下，如果loss比较低，就保存模型
+                if step % validate_every_n_steps == 0:
+                    temp_validating_loss = self.validate(new_state, sess)
+                    if temp_validating_loss < validating_loss:
+                        self.saver.save(sess, os.path.join(save_path, 'model'), global_step=step)
+                        validating_loss = temp_validating_loss
                 if step >= max_steps:
                     break
             self.saver.save(sess, os.path.join(save_path, 'model'), global_step=step)
 
-    def sample(self, n_samples, prime, vocab_size):
+    def validate(self, state, sess):
+        x, y = self.validating_batch_generator.__next__()
+        feed = {self.inputs: x,
+                self.targets: y,
+                self.keep_prob: self.train_keep_prob,
+                self.initial_state: state}
+        validating_batch_loss, _, __ = sess.run([self.loss,
+                                                 self.final_state,
+                                                 self.optimizer],
+                                                feed_dict=feed)
+        return validating_batch_loss
+
+    def sample(self, n_samples, prime, vocab_size, word_to_int):
         samples = [c for c in prime]
         sess = self.session
         new_state = sess.run(self.initial_state)
@@ -155,35 +171,41 @@ class CharRNN:
         # 添加字符到samples中
         samples.append(c)
 
-        # 不断生成字符，直到达到生成了右书名号“》”
-        # 定义单个变量会出现重定义的情况，因此定义一个数组，用0号位做标记
-        legalFileEnding = [False]
-        for i in range(n_samples):
-            c = self.sample_one_character(c, sess, new_state, vocab_size)
-            if c == '》':
-                legalFileEnding[0] = True
-                break
-            else:
-                samples.append(c)
+        # 不断生成字符，直到达到指定数目
+        char_counter = {}
+        for i in range(100):
+            x = np.zeros((1, 1))
+            x[0, 0] = c
+            feed = {self.inputs: x,
+                    self.keep_prob: 1.,
+                    self.initial_state: new_state}
+            preds, new_state = sess.run([self.proba_prediction, self.final_state],
+                                        feed_dict=feed)
 
-        # while not legalFileEnding[0]:
-        #     c = self.sample_one_character(c, sess, new_state, vocab_size)
-        #     if c == '》':
-        #         legalFileEnding[0] = True
-        #     else:
-        #         samples.append(c)
+            c = pick_top_n(preds, vocab_size)
+            samples.append(c)
+
+        char_counter['('] = samples.count(word_to_int('('))
+        char_counter[')'] = samples.count(word_to_int(')'))
+        char_counter['['] = samples.count(word_to_int('['))
+        char_counter[']'] = samples.count(word_to_int(']'))
+        char_counter['{'] = samples.count(word_to_int('{'))
+        char_counter['}'] = samples.count(word_to_int('}'))
+        while char_counter['('] != char_counter[')'] or char_counter['['] != char_counter[']'] or char_counter['{'] != \
+                char_counter['}']:
+            x = np.zeros((1, 1))
+            x[0, 0] = c
+            feed = {self.inputs: x,
+                    self.keep_prob: 1.,
+                    self.initial_state: new_state}
+            preds, new_state = sess.run([self.proba_prediction, self.final_state],
+                                        feed_dict=feed)
+
+            c = pick_top_n(preds, vocab_size)
+            samples[c] += 1
+            samples.append(c)
 
         return np.array(samples)
-
-    def sample_one_character(self, c, sess, new_state, vocab_size):
-        x = np.zeros((1, 1))
-        x[0, 0] = c
-        feed = {self.inputs: x,
-                self.keep_prob: 1.,
-                self.initial_state: new_state}
-        preds, new_state = sess.run([self.proba_prediction, self.final_state],
-                                    feed_dict=feed)
-        return pick_top_n(preds, vocab_size)
 
     def load(self, checkpoint):
         self.session = tf.Session()

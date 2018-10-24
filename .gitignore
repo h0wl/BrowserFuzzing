@@ -101,3 +101,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+*.index
+*.meta
+*.data-00000-of-00001
+Generator/model/js/checkpoint
+*.pkl
+*.zip
