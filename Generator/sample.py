@@ -6,13 +6,14 @@ import os
 FLAGS = tf.flags.FLAGS
 
 tf.flags.DEFINE_string('name', 'js', '')
-tf.flags.DEFINE_integer('lstm_size', 128, 'size of hidden state of lstm')
+tf.flags.DEFINE_string('file_type', 'js', 'File Type of Current Sampling.')
+tf.flags.DEFINE_integer('lstm_size', 512, 'size of hidden state of lstm')
 tf.flags.DEFINE_integer('num_layers', 2, 'number of lstm layers')
 tf.flags.DEFINE_boolean('use_embedding', False, 'whether to use embedding')
 tf.flags.DEFINE_integer('embedding_size', 128, 'size of embedding')
 tf.flags.DEFINE_string('converter_path', 'model/js/converter.pkl', 'model/name/converter.pkl')
 tf.flags.DEFINE_string('checkpoint_path', 'model/js/', 'checkpoint path')
-tf.flags.DEFINE_string('start_string', 'var ', 'use this string to start generating')
+tf.flags.DEFINE_string('start_string', 'var a = fun', 'use this string to start generating')
 tf.flags.DEFINE_integer('max_length', 2000, 'max length to generate')
 
 
@@ -29,8 +30,13 @@ def main(_):
     model.load(FLAGS.checkpoint_path)
 
     start = converter.text_to_arr(FLAGS.start_string)
-    arr = model.sample(FLAGS.max_length, start, converter.vocab_size, converter.word_to_int)
-    print(converter.arr_to_text(arr))
+    for i in range(0, 50):
+        print('Generating Code File: ' + str(i))
+        file_path = '../../BrowserFuzzingData/generated/' + FLAGS.file_type + '/' + str(i) + '.' + FLAGS.file_type
+        arr = model.sample(FLAGS.max_length, start, converter.vocab_size, converter.word_to_int)
+        f = open(file_path, "wb")
+        f.write(converter.arr_to_text(arr).encode('utf-8'))
+        f.close()
 
 
 if __name__ == '__main__':

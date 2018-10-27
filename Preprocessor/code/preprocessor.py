@@ -45,12 +45,9 @@ def remove_comments_3(text):
 
 def normalize_strings(text):
     """
-    去除形如
-    /*
-     * comments
-     */
-     的块级注释
+    替换形通过""和''定义的字符串内容为空字符串
     """
+    text = re.sub("'[\s\S]*?'", "''", text)
     return re.sub('"[\s\S]*?"', '""', text)
 
 
