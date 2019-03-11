@@ -6,7 +6,7 @@ import time
 
 import numpy as np
 import tensorflow as tf
-
+import random
 from read_utils import get_batch_generator
 
 
@@ -61,11 +61,12 @@ class CharRNN:
             if self.use_embedding is False:
                 self.lstm_inputs = tf.one_hot(self.inputs, self.num_classes)
             else:
-                with tf.device("/cpu:26") and tf.device("/cpu:27") and tf.device("/cpu:28") and tf.device("/cpu:29") \
-                     and tf.device("/cpu:30") and tf.device("/cpu:31") and tf.device("/cpu:32") and tf.device("/cpu:33") \
-                     and tf.device("/cpu:34") and tf.device("/cpu:35") and tf.device("/cpu:36") and tf.device("/cpu:37") \
-                     and tf.device("/cpu:38") and tf.device("/cpu:39") and tf.device("/cpu:40") and tf.device(
-                    "/cpu:41"):
+                with tf.device("/cpu:26") and tf.device("/cpu:27") and tf.device("/cpu:28") \
+                     and tf.device("/cpu:29") and tf.device("/cpu:30") and tf.device("/cpu:31") \
+                     and tf.device("/cpu:32") and tf.device("/cpu:33") and tf.device("/cpu:34") \
+                     and tf.device("/cpu:35") and tf.device("/cpu:36") and tf.device("/cpu:37") \
+                     and tf.device("/cpu:38") and tf.device("/cpu:39") and tf.device("/cpu:40") \
+                     and tf.device("/cpu:41"):
                     embedding = tf.get_variable('embedding', [self.num_classes, self.embedding_size])
                     self.lstm_inputs = tf.nn.embedding_lookup(embedding, self.inputs)
 
@@ -182,8 +183,11 @@ class CharRNN:
         # 添加字符到samples中
         samples.append(c)
 
+        # 随机化代码长度
+        random_length = random.randint(200, n_samples)
         # 不断生成字符，直到达到指定数目
-        for i in range(n_samples):
+        i = 0
+        for i in range(random_length):
             x = np.zeros((1, 1))
             x[0, 0] = c
             feed = {self.inputs: x,
@@ -195,7 +199,7 @@ class CharRNN:
             c = pick_top_n(preds, vocab_size)
             samples.append(c)
 
-        while c != word_to_int(';'):
+        while c != word_to_int(';') and i < 6000:
             x = np.zeros((1, 1))
             x[0, 0] = c
             feed = {self.inputs: x,
@@ -206,6 +210,7 @@ class CharRNN:
 
             c = pick_top_n(preds, vocab_size)
             samples.append(c)
+            i += 1
 
         offset = samples.count(word_to_int('{')) - samples.count(word_to_int('}'))
         for i in range(0, offset):
