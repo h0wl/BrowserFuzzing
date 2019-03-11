@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e1b1584e-42e8-4f61-a68e-6bdd5f6ffb37" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/db_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/db_operation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Preprocessor/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Preprocessor/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Preprocessor/data/all_tag" beforeDir="false" afterPath="$PROJECT_DIR$/../Preprocessor/data/all_tag" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,10 +47,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-748">
+            <state relative-caret-position="3350">
               <caret line="138" column="51" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
               <folding>
                 <element signature="e#16#53#0" expanded="true" />
@@ -65,8 +62,8 @@
       <file leaf-file-name="trainer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/trainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1625">
-              <caret line="65" column="16" lean-forward="true" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
+            <state relative-caret-position="1475">
+              <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -86,7 +83,7 @@
       <file leaf-file-name="post_processor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post_processor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
+            <state relative-caret-position="200">
               <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#14#23#0" expanded="true" />
@@ -95,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generator.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+            <state relative-caret-position="678">
+              <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -110,7 +107,7 @@
       <file leaf-file-name="convertor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/convertor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
+            <state relative-caret-position="2025">
               <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -187,7 +184,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -204,6 +200,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -395,10 +392,9 @@
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32947233" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.5675676" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26002866" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2636103" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295129" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32818532" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -410,6 +406,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="8" weight="0.32947233" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32818532" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,6 +416,63 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3350">
+          <caret line="138" column="51" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
+          <folding>
+            <element signature="e#16#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1475">
+          <caret line="65" column="16" lean-forward="true" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_operation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/post_processor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#14#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convertor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2025">
+          <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1175">
+          <caret line="51" column="43" lean-forward="true" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4575">
@@ -646,20 +700,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://d19077f7-6418-49a0-8171-2614e10bbc80/schema/main/table/corpus">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://d19077f7-6418-49a0-8171-2614e10bbc80/schema/main/table/sqlite_master">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://d19077f7-6418-49a0-8171-2614e10bbc80/schema/main/table/corpus" />
+    <entry file="das://d19077f7-6418-49a0-8171-2614e10bbc80/schema/main/table/sqlite_master" />
     <entry file="file://$PROJECT_DIR$/sqlite.py" />
     <entry file="file://D:/Anaconda3/Lib/site-packages/tensorflow/python/platform/app.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -680,7 +722,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/post_processor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
+        <state relative-caret-position="200">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#14#23#0" expanded="true" />
@@ -697,8 +739,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/trainer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1625">
-          <caret line="65" column="16" lean-forward="true" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
+        <state relative-caret-position="1475">
+          <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -707,7 +749,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/convertor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
+        <state relative-caret-position="2025">
           <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -715,22 +757,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/generator.py">
+    <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="33" column="27" lean-forward="true" selection-start-line="33" selection-start-column="27" selection-end-line="33" selection-end-column="27" />
+        <state relative-caret-position="3350">
+          <caret line="138" column="51" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#16#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model.py">
+    <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-748">
-          <caret line="138" column="51" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
+        <state relative-caret-position="678">
+          <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
           <folding>
-            <element signature="e#16#53#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>

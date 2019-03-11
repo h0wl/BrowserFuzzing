@@ -1,8 +1,8 @@
-import numpy as np
 import copy
-import time
-import tensorflow as tf
 import pickle
+import time
+import numpy as np
+from db_operation import query_all
 
 
 def batch_generator(arr, n_seqs, n_steps):
@@ -18,6 +18,46 @@ def batch_generator(arr, n_seqs, n_steps):
             y = np.zeros_like(x)
             y[:, :-1], y[:, -1] = x[:, 1:], x[:, 0]
             yield x, y
+
+
+def read_corpus():
+    global training_corpus, validating_corpus
+    training_corpus = ''
+    validating_corpus = ''
+    print("---------------------------- Reading Corpus ----------------------------")
+    start_time = time.time()
+    source_list = list(query_all())
+    print('Read Corpus Finished in %.3f Seconds.\n' % (time.time() - start_time))
+
+    training_corpus_percentage = 0.9
+    training_corpus_length = int(len(source_list) * training_corpus_percentage) + 1
+
+    print("---------------------------- Building Training Data Set ----------------------------")
+    start_time = time.time()
+    training_corpus = '\n'.join(v.__getitem__(0) for v in source_list[0:training_corpus_length])
+    print('Build Training Data Set Finished in %.3f Seconds.\n' % (time.time() - start_time))
+
+    print("---------------------------- Building Validating Data Set ----------------------------")
+    start_time = time.time()
+    validating_corpus = '\n'.join(v.__getitem__(0) for v in source_list[training_corpus_length:len(source_list)])
+    print('Build Validating Data Set Finished in %.3f Seconds.\n' % (time.time() - start_time))
+    return training_corpus, validating_corpus
+
+
+def vectroize_corpus(converter):
+    print("---------------------------- Vectorizing Corpus ----------------------------")
+    start_time = time.time()
+    global training_vector_array, validating_vector_array
+    training_vector_array = converter.text_to_arr(training_corpus)
+    validating_vector_array = converter.text_to_arr(validating_corpus)
+    print('Vectorize Corpus Finished in %.3f Seconds.\n' % (time.time() - start_time))
+
+
+def get_batch_generator(_type_, num_seqs, num_steps):
+    if _type_ == 'training':
+        return batch_generator(training_vector_array, num_seqs, num_steps)
+    else:
+        return batch_generator(validating_vector_array, num_seqs, num_steps)
 
 
 class TextConverter(object):

@@ -1,9 +1,13 @@
 # coding: utf-8
 from __future__ import print_function
-import tensorflow as tf
-import numpy as np
-import time
+
 import os
+import time
+
+import numpy as np
+import tensorflow as tf
+import random
+from read_utils import get_batch_generator
 
 
 def pick_top_n(preds, vocab_size, top_n=5):
@@ -18,7 +22,7 @@ def pick_top_n(preds, vocab_size, top_n=5):
 
 
 class CharRNN:
-    def __init__(self, num_classes, validating_batch_generator, num_seqs=64, num_steps=50,
+    def __init__(self, num_classes, num_seqs=64, num_steps=50,
                  lstm_size=128, num_layers=2, learning_rate=0.001,
                  grad_clip=5, sampling=False, train_keep_prob=0.5, use_embedding=False, embedding_size=128):
         if sampling is True:
@@ -36,7 +40,6 @@ class CharRNN:
         self.train_keep_prob = train_keep_prob
         self.use_embedding = use_embedding
         self.embedding_size = embedding_size
-        self.validating_batch_generator = validating_batch_generator
 
         tf.reset_default_graph()
         self.build_inputs()
@@ -58,7 +61,12 @@ class CharRNN:
             if self.use_embedding is False:
                 self.lstm_inputs = tf.one_hot(self.inputs, self.num_classes)
             else:
-                with tf.device("/cpu:0"):
+                with tf.device("/cpu:26") and tf.device("/cpu:27") and tf.device("/cpu:28") \
+                     and tf.device("/cpu:29") and tf.device("/cpu:30") and tf.device("/cpu:31") \
+                     and tf.device("/cpu:32") and tf.device("/cpu:33") and tf.device("/cpu:34") \
+                     and tf.device("/cpu:35") and tf.device("/cpu:36") and tf.device("/cpu:37") \
+                     and tf.device("/cpu:38") and tf.device("/cpu:39") and tf.device("/cpu:40") \
+                     and tf.device("/cpu:41"):
                     embedding = tf.get_variable('embedding', [self.num_classes, self.embedding_size])
                     self.lstm_inputs = tf.nn.embedding_lookup(embedding, self.inputs)
 
@@ -94,7 +102,7 @@ class CharRNN:
         with tf.name_scope('loss'):
             y_one_hot = tf.one_hot(self.targets, self.num_classes)
             y_reshaped = tf.reshape(y_one_hot, self.logits.get_shape())
-            loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=self.logits, labels=y_reshaped)
+            loss = tf.nn.softmax_cross_entropy_with_logits(logits=self.logits, labels=y_reshaped)
             self.loss = tf.reduce_mean(loss)
 
     def build_optimizer(self):
@@ -104,14 +112,15 @@ class CharRNN:
         train_op = tf.train.AdamOptimizer(self.learning_rate)
         self.optimizer = train_op.apply_gradients(zip(grads, tvars))
 
-    def train(self, training_batch_generator, max_steps, save_path, validate_every_n_steps, log_every_n):
+    def train(self, max_steps, save_path, validate_every_n_steps, log_every_n):
         self.session = tf.Session()
         validating_loss = 10000
         with self.session as sess:
             sess.run(tf.global_variables_initializer())
-            # Train network
-            step = 0
             new_state = sess.run(self.initial_state)
+            training_batch_generator = get_batch_generator('training', self.num_seqs, self.num_steps)
+            validating_batch_generator = get_batch_generator('validating', self.num_seqs, self.num_steps)
+            step = 0
             for x, y in training_batch_generator:
                 step += 1
                 start = time.time()
@@ -127,21 +136,24 @@ class CharRNN:
                 end = time.time()
                 # control the print lines
                 if step % log_every_n == 0:
-                    print('step: {}/{}... '.format(step, max_steps),
+                    print('step: {}/{} '.format(step, max_steps),
                           'loss: {:.4f}... '.format(batch_loss),
                           '{:.4f} sec/batch'.format((end - start)))
                 # 每隔validate_every_n_steps验证一下，如果loss比较低，就保存模型
                 if step % validate_every_n_steps == 0:
-                    temp_validating_loss = self.validate(new_state, sess)
+                    temp_validating_loss = self.validate(validating_batch_generator, new_state, sess)
+
                     if temp_validating_loss < validating_loss:
                         self.saver.save(sess, os.path.join(save_path, 'model'), global_step=step)
                         validating_loss = temp_validating_loss
                 if step >= max_steps:
                     break
+
+            # TODO: Change Logic
             self.saver.save(sess, os.path.join(save_path, 'model'), global_step=step)
 
-    def validate(self, state, sess):
-        x, y = self.validating_batch_generator.__next__()
+    def validate(self, batch_generator, state, sess):
+        x, y = batch_generator.__next__()
         feed = {self.inputs: x,
                 self.targets: y,
                 self.keep_prob: self.train_keep_prob,
@@ -171,9 +183,11 @@ class CharRNN:
         # 添加字符到samples中
         samples.append(c)
 
+        # 随机化代码长度
+        random_length = random.randint(200, n_samples)
         # 不断生成字符，直到达到指定数目
-        char_counter = {}
-        for i in range(100):
+        i = 0
+        for i in range(random_length):
             x = np.zeros((1, 1))
             x[0, 0] = c
             feed = {self.inputs: x,
@@ -185,14 +199,7 @@ class CharRNN:
             c = pick_top_n(preds, vocab_size)
             samples.append(c)
 
-        char_counter['('] = samples.count(word_to_int('('))
-        char_counter[')'] = samples.count(word_to_int(')'))
-        char_counter['['] = samples.count(word_to_int('['))
-        char_counter[']'] = samples.count(word_to_int(']'))
-        char_counter['{'] = samples.count(word_to_int('{'))
-        char_counter['}'] = samples.count(word_to_int('}'))
-        while char_counter['('] != char_counter[')'] or char_counter['['] != char_counter[']'] or char_counter['{'] != \
-                char_counter['}']:
+        while c != word_to_int(';') and i < 6000:
             x = np.zeros((1, 1))
             x[0, 0] = c
             feed = {self.inputs: x,
@@ -202,8 +209,12 @@ class CharRNN:
                                         feed_dict=feed)
 
             c = pick_top_n(preds, vocab_size)
-            samples[c] += 1
             samples.append(c)
+            i += 1
+
+        offset = samples.count(word_to_int('{')) - samples.count(word_to_int('}'))
+        for i in range(0, offset):
+            samples.append(word_to_int('}'))
 
         return np.array(samples)
 
