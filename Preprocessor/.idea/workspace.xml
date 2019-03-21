@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5eb4ccbd-3ce7-4ee9-8240-4ee543aa7f31" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../CodeGenerator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CodeGenerator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/.idea/Generator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/.idea/Generator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/read_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/read_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Generator/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Generator/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Preprocessor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Preprocessor.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/db_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/db_operation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/preprocessor.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/preprocessor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/all_tag" beforeDir="false" afterPath="$PROJECT_DIR$/data/all_tag" afterDir="false" />
-    </list>
+    <list default="true" id="5eb4ccbd-3ce7-4ee9-8240-4ee543aa7f31" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,11 +19,48 @@
       <file leaf-file-name="preprocessor.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/code/preprocessor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1138">
+            <state relative-caret-position="1738">
               <caret line="177" column="24" lean-forward="true" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="24" />
               <folding>
                 <element signature="e#14#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="distributor.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/distributor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="e#146#155#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statisticTool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/statisticTool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="word2vector.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/word2vector.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-373" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/filter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -81,7 +105,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="3" />
     <option name="y" value="87" />
     <option name="width" value="1920" />
@@ -236,7 +260,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="916" extended-state="7" />
+    <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32947233" />
@@ -269,13 +293,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/code/distributor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3850">
-          <caret line="157" selection-start-line="157" selection-end-line="157" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/db_operation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -572,22 +589,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/statisticTool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/preprocess.py" />
     <entry file="file://$USER_HOME$/Desktop/distributor.py" />
-    <entry file="file://$PROJECT_DIR$/code/filter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/js_words">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -609,13 +612,6 @@
       </provider>
     </entry>
     <entry file="file://D:/Anaconda3/envs/py3.6_env/Lib/typing.py" />
-    <entry file="file://$PROJECT_DIR$/code/distributor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="157" selection-start-line="157" selection-end-line="157" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/db_operation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -626,9 +622,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/filter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/statisticTool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/word2vector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-373" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/distributor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#146#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/preprocessor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1138">
+        <state relative-caret-position="1738">
           <caret line="177" column="24" lean-forward="true" selection-start-line="177" selection-start-column="24" selection-end-line="177" selection-end-column="24" />
           <folding>
             <element signature="e#14#23#0" expanded="true" />
