@@ -9,8 +9,10 @@ import math
 # from prepro_hparams import Hparams
 from db_operation import DBOperation
 
+
+
 def readdb():
-    db_path = './js_corpus_final_top_1000.db'  # 数据库文件
+    db_path = '../../BrowserFuzzingData/js_corpus_final_top_1000.db'  # 数据库文件
     op = DBOperation(db_path, 'corpus')
     result = op.query_all()  # result为整体数据,格式为：list[str]
     # print(result)
@@ -26,59 +28,57 @@ def code2tokens(code):
     split_list = ['.', '\'', '"', ' ', '?', '*', '[', ']', '(', ')', '{', '}', ':', '=', ',', '+', '-', '>', '<', ';',
                   '%','/','!','|','^']
     #检测多个字符的运算符
-    split_list2 = ['+', '-', '=', '<', '>']
-    doublesplit = ['++','+=','--','-=','*=','%=','<=','<<','<<=','>=','>>','>>=','>>>=','!=','!==','==','===','\'','\"','\\','\t','\&','\n','\r','\b','\f']
-    ESC = ['\'','"','\\','t','&','n','r','b','f']
+
+    doublesplit = ['++','+=','--','-=','*=','%=','<=','<<','<<=','>=','>>','>>=','>>>=','!=','!==','==','===','=>','||','&&','\'','\"','\\','\t','\&','\n','\r','\b','\f']
+    split_list2 = ['+', '-', '=', '<', '>', '|', "&",]
+
+    ESC = ['\'','"','\\','\t','\&','\n','\r','\b','\f']
     word = ''
-    oprater = ''
+    operator = ''
+    #flag为1，表示多位operater，flag为0表示word或者一位operator
+    flag = 0
+
     for i in range(len(code)):
 
-        if code[i] not in split_list:
-            word += code[i]
-        else:
+        #一位操作符
+        if code[i] in split_list:
+
             if word != '':
                 tokens.append(word)
                 word = ''
-            #         处理操作符
 
-
-            if code[i] != ' ':
-                oprater += code[i]
+            if code[i] !=' ':
+                operator += code[i]
+                flag = 0
                 if i+1 < len(code):
-                    if code[i] == '\\':
-                        if code[i+1] in ESC:
-                            continue
-                    elif code[i + 1] in split_list2:
+                    if i in split_list2:
+                        flag = 1
                         continue
+        #多位操作符或word
+        else:
+            #多位操作符
+            if flag == 1:
+                operator += code[i]
+                flag = 0
+                if i+1 < len(code):
+                    if i in split_list2:
+                        flag = 1
+                        continue
+            #word
+            else:
+                word += code[i]
+                if operator != '':
+                    if operator in split_list2:
+                        # if operator == '\n':
+                        #     operator = '\\n'
+                        # if operator == '\t':
+                        #     operator = '\\t'
+                        tokens.append(operator)
+                        operator = ''
                     else:
-                        # print(oprater)
-                        if oprater in doublesplit:
-                            if oprater =='\n':
-                                oprater = '\\n'
-                            if oprater == '\t':
-                                oprater == '\\t'
-                            tokens.append(oprater)
-                            oprater = ''
-                        else:
-                            for s in range(len(oprater)):
-                                tokens.append(oprater[s])
-                            oprater = ''
-
-                        # tokens.append(oprater)
-                        # oprater = ''
-
-                else:
-                    # print(oprater)
-                    if oprater in doublesplit:
-                        tokens.append(oprater)
-                        oprater = ''
-                    else:
-                        for s in range(len(oprater)):
-                            tokens.append(oprater[s])
-                        oprater = ''
-
-                    # tokens.append(oprater)
-                    # oprater = ''
+                        for a in operator:
+                            tokens.append(a)
+                        operator = ''
 
 
     return tokens
@@ -117,7 +117,7 @@ def creatdict():
     count_dict = {}
     tokenfile = []
 
-    # # 打开文件（本地列表读取）
+       # # 打开文件（本地列表读取）
     # with open("./output/jsfile.txt", "r") as pathfile:
     # # with open("C:\\Users\\Administrator\\Desktop\\jsfile.txt", "r") as pathfile:
     #     for line in pathfile.readlines():
@@ -130,44 +130,61 @@ def creatdict():
     #
     #             count_dict = tokencount(tokens, count_dict)
 
-
     dbfile = readdb()
+    i = 0
+    print("devide")
 
     for line in dbfile:
         line = line[0].decode("UTF-8")
 
         tokens = code2tokens(line)
+
+        # print(str(tokens))
+
         tokenfile.append(tokens)
 
         count_dict = tokencount(tokens,count_dict)
+        i  = i + 1
+        if i > 999:
+            break
 
+    count_list = {}
 
     # 按照词频从高到低排列
-    count_list = sorted(count_dict.items(), key=lambda x: x[1], reverse=True)
+    # count_list = sorted(count_dict.items(), key=lambda x: x[1], reverse=True)
+    for token in sorted(count_dict.items(), key=lambda x: x[1], reverse=True):
+        count_list.setdefault(token[0],token[1])
+
     # 保存字典
     outfile = "./output/jsdict.txt"
     dictwithoutlast5 = "./output/dictwithoutlast5.txt"
     with open(outfile, 'w', encoding="UTF-8")as outputfile:
-        for token in count_list:
+        for key,value in count_list.items():
             # print(token[0] + "\t" + str(token[1]))
 
-            outputfile.write(token[0] + "\t" + str(token[1]))
+            outputfile.write(key + "\t" + str(value))
             outputfile.write('\n')
 
-    num = range(len(count_list))
-    tokenonly = []
-    for token in count_list:
-        if token[1] > 5:
-            tokenonly.append(token[0])
-    tokendict = list(zip(tokenonly,range(len(count_list))))
+    num = 0
+    # tokenonly = []
+    for key,value in count_list.items():
+        if value > 5:
+            # tokenonly.append(token[0])
+            num = num + 1
+    # tokendict = list(zip(tokenonly,range(len(count_list))))
+    tokendict = {}
+
+    for (x , y) in zip(count_list.keys(),range(num)):
+        tokendict.setdefault(x,y)
+
     with open(dictwithoutlast5, 'w', encoding="UTF-8")as outputdict:
 
-        for token in tokendict:
+        for key,value in tokendict.items():
             # print(token[1])
 
                 # print()
             # print(token[0] + "\t" + str(token[1]))
-            outputdict.write(token[0] + "\t" + str(token[1]))
+            outputdict.write(key + "\t" + str(value))
             outputdict.write('\n')
 
     return tokendict,tokenfile
