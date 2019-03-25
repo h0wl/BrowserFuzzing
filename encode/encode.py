@@ -2,14 +2,14 @@
 import creatdict
 import similar
 
-def find(token,dict):
-    # try:
-    for tokens in dict:
-        if tokens[0] == token:
-            #要把token[1]转成int类型
-            return int(tokens[1])
-        else:
-            return -1
+# def find(token,dict):
+#     # try:
+#     for tokens in dict:
+#         if tokens[0] == token:
+#             #要把token[1]转成int类型
+#             return int(tokens[1])
+#         else:
+#             return -1
 
 
 
@@ -17,10 +17,14 @@ def encode(tokens,dict):
     flag = -1
     afterencode = []
     for token in tokens:
-        for dicttoken in dict:
-            if token == dicttoken[0]:
-                flag = dicttoken[1]
-                break
+        # for dicttoken in dict:
+        #     if token == dicttoken[0]:
+        #         flag = dicttoken[1]
+        #         break
+        flag = dict.get(token)
+        if flag == None:
+            flag = -1
+
         afterencode.append(flag)
         flag = -1
     return afterencode
@@ -51,11 +55,12 @@ def unifinevector(vectors):
 if __name__ == '__main__':
 
 
+
     print("Processing dict\n")
     dict,tokenfile = creatdict.creatdict()
     vectors = []
     results = []
-    # dbfile = creatdict.readdb()
+    dbfile = creatdict.readdb()
 
     print("Encode")
 
@@ -65,6 +70,8 @@ if __name__ == '__main__':
         # tokens = creatdict.code2tokens(line)
         vector = encode(tokenfile[i], dict)
         # print(vector)
+
+
         vectors.append(vector)
 
     # with open(".\\output\\jsfile.txt","r",encoding="UTF-8") as filepath:
