@@ -145,7 +145,7 @@ def creatdict():
 
         count_dict = tokencount(tokens,count_dict)
         i  = i + 1
-        if i > 999:
+        if i > 50000:
             break
 
     count_list = {}
@@ -158,6 +158,7 @@ def creatdict():
     # 保存字典
     outfile = "./output/jsdict.txt"
     dictwithoutlast5 = "./output/dictwithoutlast5.txt"
+
     with open(outfile, 'w', encoding="UTF-8")as outputfile:
         for key,value in count_list.items():
             # print(token[0] + "\t" + str(token[1]))
