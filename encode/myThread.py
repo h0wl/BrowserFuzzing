@@ -37,19 +37,19 @@ def getsimilarity (self):
         for j in range(len(self.vector)):
             resultline = []
             for i in range(len(self.vector)):
-                if i > j:
+                if i >= j:
                     break
                 else:
                     # 用append
                     result = float('%.03f'%similar.cosine_similarity(self.vector[j], self.vector[i]))
                     resultline.append(result)
-                    if result > 0.8:
+                    if result > 0.9:
                         self.delfile.add(j)
                         self.clone.append((i,j))
                     # print("(" + str(j) + "," + str(i) + ")")
             results.append(resultline)
 
-        print("delfile-" + self.name + " :"+ len(self.delfile))
+        print("delfile-" + self.name + " :"+ str(len(self.delfile)))
 
         print("remove clone： " + self.name)
 

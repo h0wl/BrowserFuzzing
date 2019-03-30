@@ -7,14 +7,15 @@ import logging
 import math
 
 # from prepro_hparams import Hparams
-from db_operation import DBOperation
+from db_operation1 import DBOperation
 
 
 
 def readdb():
-    db_path = '../../BrowserFuzzingData/js_corpus_final_top_1000.db'  # 数据库文件
+    # db_path = '../../BrowserFuzzingData/db/js_corpus_final_top_1000.db'  # 数据库文件
+    db_path = './js_corpus_final_top_1000.db'  # 数据库文件
     op = DBOperation(db_path, 'corpus')
-    result = op.query_all()  # result为整体数据,格式为：list[str]
+    result = op.query_all(["Content"])  # result为整体数据,格式为：list[str]
     # print(result)
     return result
 
@@ -26,7 +27,7 @@ def code2tokens(code):
     tokens = []
 
     split_list = ['.', '\'', '"', ' ', '?', '*', '[', ']', '(', ')', '{', '}', ':', '=', ',', '+', '-', '>', '<', ';',
-                  '%','/','!','|','^']
+                  '%','/','!','|','^','&']
     #检测多个字符的运算符
 
     doublesplit = ['++','+=','--','-=','*=','%=','<=','<<','<<=','>=','>>','>>=','>>>=','!=','!==','==','===','=>','||','&&','\'','\"','\\','\t','\&','\n','\r','\b','\f']
@@ -37,49 +38,62 @@ def code2tokens(code):
     operator = ''
     #flag为1，表示多位operater，flag为0表示word或者一位operator
     flag = 0
-
+    # print(len(code))
     for i in range(len(code)):
 
-        #一位操作符
-        if code[i] in split_list:
+        # print(code[i])
 
+        if code[i] not in split_list:
+            if flag ==0:
+                word += code[i]
+
+        else:
             if word != '':
                 tokens.append(word)
                 word = ''
-
-            if code[i] !=' ':
-                operator += code[i]
-                flag = 0
-                if i+1 < len(code):
-                    if i in split_list2:
-                        flag = 1
-                        continue
-        #多位操作符或word
-        else:
-            #多位操作符
-            if flag == 1:
-                operator += code[i]
-                flag = 0
-                if i+1 < len(code):
-                    if i in split_list2:
-                        flag = 1
-                        continue
-            #word
-            else:
-                word += code[i]
-                if operator != '':
-                    if operator in split_list2:
-                        # if operator == '\n':
-                        #     operator = '\\n'
-                        # if operator == '\t':
-                        #     operator = '\\t'
-                        tokens.append(operator)
-                        operator = ''
-                    else:
-                        for a in operator:
-                            tokens.append(a)
-                        operator = ''
-
+            if code[i] != ' ':
+                tokens.append(code[i])
+        # print(str(tokens))
+        # #一位操作符
+        # if code[i] in split_list:
+        #
+        #     if word != '':
+        #         tokens.append(word)
+        #         word = ''
+        #
+        #     if code[i] !=' ':
+        #         operator += code[i]
+        #         flag = 0
+        #         if i+1 < len(code):
+        #             if i in split_list2:
+        #                 flag = 1
+        #                 continue
+        # #多位操作符或word
+        # else:
+        #     #多位操作符
+        #     if flag == 1:
+        #         operator += code[i]
+        #         flag = 0
+        #         if i+1 < len(code):
+        #             if i in split_list2:
+        #                 flag = 1
+        #                 continue
+        #     #word
+        #     else:
+        #         word += code[i]
+        #         if operator != '':
+        #             if operator in split_list2:
+        #                 # if operator == '\n':
+        #                 #     operator = '\\n'
+        #                 # if operator == '\t':
+        #                 #     operator = '\\t'
+        #                 tokens.append(operator)
+        #                 operator = ''
+        #             else:
+        #                 for a in operator:
+        #                     tokens.append(a)
+        #                 operator = ''
+        #
 
     return tokens
 
@@ -131,13 +145,20 @@ def creatdict():
     #             count_dict = tokencount(tokens, count_dict)
 
     dbfile = readdb()
+    # print(str(len(dbfile)))
+    dbset = set(dbfile)
+    # print(str(len(dbset)))
+    dbfile = list(dbset)
+    # print(str(len(dbfile)))
     i = 0
     print("devide")
 
     for line in dbfile:
         line = line[0].decode("UTF-8")
+        # print(str(line))
 
         tokens = code2tokens(line)
+
 
         # print(str(tokens))
 
@@ -149,6 +170,10 @@ def creatdict():
             break
 
     count_list = {}
+
+    for token in tokenfile:
+        if len(token) < 15:
+            print(token)
 
     # 按照词频从高到低排列
     # count_list = sorted(count_dict.items(), key=lambda x: x[1], reverse=True)
